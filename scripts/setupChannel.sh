@@ -5,8 +5,9 @@ echo "=== SETUP CHANNEL DAN JOIN PEERS ==="
 
 # === Konfigurasi Umum ===
 CHANNEL_NAME="sick-letter-channel"
-FABRIC_CFG_PATH=~/Documents/Capstone-Project
-BIN_PATH=~/Documents/Capstone-Project/fabric-samples/bin
+PROJECT_ROOT=$(cd "$(dirname "$0")/.." && pwd)
+export FABRIC_CFG_PATH=$PROJECT_ROOT
+export PATH=$PROJECT_ROOT/fabric-samples/bin:$PATH
 ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
 
 export PATH=$BIN_PATH:$PATH
