@@ -1,4 +1,12 @@
-version: '2.5'
+version: '2.4'
+
+# =================================================================
+# MIGRASI KE PRODUCTION — jalankan perintah ini:
+#   sed -i 's/example\.com/DOMAIN_KAMU/g' docker-compose.yaml
+#   sed -i 's/example\.com/DOMAIN_KAMU/g' configtx.yaml
+#   sed -i 's/example\.com/DOMAIN_KAMU/g' crypto-config.yaml
+#   lalu generate ulang: cryptogen + configtxgen
+# =================================================================
 
 volumes:
   orderer.example.com:
@@ -7,28 +15,40 @@ volumes:
 
 networks:
   fabric:
+    name: fabric_network
 
 services:
+
+  # =============================================================
+  # ORDERER
+  # =============================================================
   orderer.example.com:
     container_name: orderer.example.com
-    image: hyperledger/fabric-orderer:2.4
+    image: hyperledger/fabric-orderer:2.5
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
       - ORDERER_GENERAL_LISTENPORT=7050
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
       - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
       - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
-      # enabled TLS
+      - ORDERER_GENERAL_BOOTSTRAPMETHOD=file
+      - ORDERER_GENERAL_BOOTSTRAPFILE=/var/hyperledger/orderer/orderer.genesis.block
+      # TLS
       - ORDERER_GENERAL_TLS_ENABLED=true
       - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
       - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=/var/hyperledger/orderer/tls/ca.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
       - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
-      - ORDERER_GENERAL_CLUSTER_ROOTCAS=/var/hyperledger/orderer/tls/ca.crt
+      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      # Admin (fitur baru Fabric 2.5)
+      - ORDERER_ADMIN_TLS_ENABLED=true
+      - ORDERER_ADMIN_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_ADMIN_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_ADMIN_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_ADMIN_TLS_CLIENTROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_ADMIN_LISTENADDRESS=0.0.0.0:7053
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
@@ -37,20 +57,54 @@ services:
       - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls:/var/hyperledger/orderer/tls
       - orderer.example.com:/var/hyperledger/production/orderer
     ports:
-      - 7050:7050
-      - 8443:8443
+      - 7050:7050   # gRPC peer komunikasi
+      - 7053:7053   # Admin channel management (Fabric 2.5)
+      - 8443:8443   # Operations / health check
     networks:
       - fabric
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "sh", "-c", "curl -sf http://localhost:8443/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
 
+  # =============================================================
+  # COUCHDB KLINIK
+  # =============================================================
+  couchdb.klinik:
+    container_name: couchdb.klinik
+    image: couchdb:3.3.3
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=adminpw
+    ports:
+      - 5984:5984
+    volumes:
+      - ./data/couchdb/klinik:/opt/couchdb/data
+    networks:
+      - fabric
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:5984/_up"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # =============================================================
+  # PEER 0 — KLINIK (READ + WRITE)
+  # Endorser untuk transaksi IssueSuratSakit & RevokeSuratSakit
+  # =============================================================
   peer0.klinik.example.com:
     container_name: peer0.klinik.example.com
-    image: hyperledger/fabric-peer:2.4
+    image: hyperledger/fabric-peer:2.5
     environment:
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=capstone-project_fabric
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabric_network
       - FABRIC_LOGGING_SPEC=INFO
       - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_PROFILE_ENABLED=false
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
@@ -63,28 +117,69 @@ services:
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.klinik.example.com:7051
       - CORE_PEER_LOCALMSPID=KlinikMSP
       - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9443
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.klinik:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     volumes:
-      - /var/run/:/host/var/run/
+      - /var/run/docker.sock:/host/var/run/docker.sock
       - ./crypto-config/peerOrganizations/klinik.example.com/peers/peer0.klinik.example.com/msp:/etc/hyperledger/fabric/msp
       - ./crypto-config/peerOrganizations/klinik.example.com/peers/peer0.klinik.example.com/tls:/etc/hyperledger/fabric/tls
       - peer0.klinik.example.com:/var/hyperledger/production
     ports:
-      - 7051:7051
-      - 9443:9443
+      - 7051:7051   # gRPC
+      - 7052:7052   # Chaincode
+      - 9443:9443   # Operations
+    depends_on:
+      couchdb.klinik:
+        condition: service_healthy
     networks:
       - fabric
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "sh", "-c", "curl -sf http://localhost:9443/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
 
+  # =============================================================
+  # COUCHDB AKADEMIK
+  # =============================================================
+  couchdb.akademik:
+    container_name: couchdb.akademik
+    image: couchdb:3.3.3
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=adminpw
+    ports:
+      - 6984:5984
+    volumes:
+      - ./data/couchdb/akademik:/opt/couchdb/data
+    networks:
+      - fabric
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:5984/_up"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # =============================================================
+  # PEER 0 — AKADEMIK (READ / VERIFY ONLY)
+  # Hanya evaluate transaksi — tidak endorse write
+  # =============================================================
   peer0.akademik.example.com:
     container_name: peer0.akademik.example.com
-    image: hyperledger/fabric-peer:2.4
+    image: hyperledger/fabric-peer:2.5
     environment:
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=capstone-project_fabric
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabric_network
       - FABRIC_LOGGING_SPEC=INFO
       - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_PROFILE_ENABLED=false
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
@@ -97,56 +192,40 @@ services:
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.akademik.example.com:9051
       - CORE_PEER_LOCALMSPID=AkademikMSP
       - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:10443
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.akademik:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     volumes:
-      - /var/run/:/host/var/run/
+      - /var/run/docker.sock:/host/var/run/docker.sock
       - ./crypto-config/peerOrganizations/akademik.example.com/peers/peer0.akademik.example.com/msp:/etc/hyperledger/fabric/msp
       - ./crypto-config/peerOrganizations/akademik.example.com/peers/peer0.akademik.example.com/tls:/etc/hyperledger/fabric/tls
       - peer0.akademik.example.com:/var/hyperledger/production
     ports:
       - 9051:9051
+      - 9052:9052
       - 10443:10443
+    depends_on:
+      couchdb.akademik:
+        condition: service_healthy
     networks:
       - fabric
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "sh", "-c", "curl -sf http://localhost:10443/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
 
-  peer0.mahasiswa.example.com:
-    container_name: peer0.mahasiswa.example.com
-    image: hyperledger/fabric-peer:2.4
-    environment:
-      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=capstone-project_fabric
-      - FABRIC_LOGGING_SPEC=INFO
-      - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_PROFILE_ENABLED=true
-      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
-      - CORE_PEER_ID=peer0.mahasiswa.example.com
-      - CORE_PEER_ADDRESS=peer0.mahasiswa.example.com:8051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.mahasiswa.example.com:8052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.mahasiswa.example.com:8051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.mahasiswa.example.com:8051
-      - CORE_PEER_LOCALMSPID=MahasiswaMSP
-      - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:11443
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-    command: peer node start
-    volumes:
-      - /var/run/:/host/var/run/
-      - ./crypto-config/peerOrganizations/mahasiswa.example.com/peers/peer0.mahasiswa.example.com/msp:/etc/hyperledger/fabric/msp
-      - ./crypto-config/peerOrganizations/mahasiswa.example.com/peers/peer0.mahasiswa.example.com/tls:/etc/hyperledger/fabric/tls
-      - peer0.mahasiswa.example.com:/var/hyperledger/production
-    ports:
-      - 8051:8051
-      - 11443:11443
-    networks:
-      - fabric
-
+  # =============================================================
+  # CLI — Admin tools
+  # =============================================================
   cli:
     container_name: cli
-    image: hyperledger/fabric-tools:2.4
+    image: hyperledger/fabric-tools:2.5
     tty: true
     stdin_open: true
     environment:
@@ -157,21 +236,27 @@ services:
       - CORE_PEER_ADDRESS=peer0.klinik.example.com:7051
       - CORE_PEER_LOCALMSPID=KlinikMSP
       - CORE_PEER_TLS_ENABLED=true
-      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/klinik.example.com/peers/peer0.klinik.example.com/tls/server.crt
-      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/klinik.example.com/peers/peer0.klinik.example.com/tls/server.key
-      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/klinik.example.com/peers/peer0.klinik.example.com/tls/ca.crt
-      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/klinik.example.com/users/Admin@klinik.example.com/msp
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/crypto/peerOrganizations/klinik.example.com/peers/peer0.klinik.example.com/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/crypto/peerOrganizations/klinik.example.com/peers/peer0.klinik.example.com/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/crypto/peerOrganizations/klinik.example.com/peers/peer0.klinik.example.com/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/fabric/crypto/peerOrganizations/klinik.example.com/users/Admin@klinik.example.com/msp
+      - ORDERER_CA=/etc/hyperledger/fabric/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+      - CHANNEL_NAME=medchannel
+      - CHAINCODE_NAME=medical
+    working_dir: /etc/hyperledger/fabric
     command: /bin/bash
     volumes:
-      - /var/run/:/host/var/run/
-      - ./chaincode/:/opt/gopath/src/github.com/chaincode
-      - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
-      - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+      - /var/run/docker.sock:/host/var/run/docker.sock
+      - ./chaincode:/etc/hyperledger/fabric/chaincode
+      - ./crypto-config:/etc/hyperledger/fabric/crypto
+      - ./channel-artifacts:/etc/hyperledger/fabric/channel-artifacts
+      - ./scripts:/etc/hyperledger/fabric/scripts
     depends_on:
-      - orderer.example.com
-      - peer0.klinik.example.com
-      - peer0.akademik.example.com
-      - peer0.mahasiswa.example.com
+      orderer.example.com:
+        condition: service_healthy
+      peer0.klinik.example.com:
+        condition: service_healthy
+      peer0.akademik.example.com:
+        condition: service_healthy
     networks:
       - fabric
