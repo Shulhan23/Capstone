@@ -1,10 +1,9 @@
-version: '2.4'
+version: '2.5'
 
 volumes:
   orderer.example.com:
   peer0.klinik.example.com:
   peer0.akademik.example.com:
-  peer0.mahasiswa.example.com:
 
 networks:
   fabric:
