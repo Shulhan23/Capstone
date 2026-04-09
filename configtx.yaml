@@ -180,4 +180,4 @@ Profiles:
         - *Klinik
         - *Akademik
       Capabilities:
-        <<: *ApplicationCapabilitiesd
+        <<: *ApplicationCapabilities
