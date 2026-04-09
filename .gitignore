@@ -1,0 +1,8 @@
+crypto-config/
+channel-artifacts/
+*.block
+*.tx
+*.pem
+*.key
+node_modules/
+.env
