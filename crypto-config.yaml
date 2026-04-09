@@ -6,26 +6,27 @@ OrdererOrgs:
       - Hostname: orderer
 
 PeerOrgs:
+  # -------------------------------------------------------------------
+  # KLINIK — READ + WRITE
+  # Users: 3 = Admin (auto) + Dokter1 + Dokter2
+  # Tambah Count jika klinik punya lebih banyak dokter/staff
+  # -------------------------------------------------------------------
   - Name: Klinik
     Domain: klinik.example.com
     EnableNodeOUs: true
     Template:
-      Count: 1
+      Count: 1       # jumlah peer — cukup 1 (bisa dikembangkan)
     Users:
-      Count: 2
-
+      Count: 2       
+ 
+  # -------------------------------------------------------------------
+  # AKADEMIK — READ / VERIFY ONLY
+  # Users: 2 = Admin (auto) + Verifikator1
+  # -------------------------------------------------------------------
   - Name: Akademik
     Domain: akademik.example.com
     EnableNodeOUs: true
     Template:
-      Count: 1
+      Count: 1       
     Users:
-      Count: 2
-
-  - Name: Mahasiswa
-    Domain: mahasiswa.example.com
-    EnableNodeOUs: true
-    Template:
-      Count: 1
-    Users:
-      Count: 2
+      Count: 1       
