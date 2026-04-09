@@ -1,4 +1,10 @@
+# =================================================================
+# MIGRASI KE PRODUCTION:
+#   sed -i 's/example\.com/DOMAIN_KAMU/g' configtx.yaml
+# =================================================================
+
 Organizations:
+
   - &OrdererOrg
     Name: OrdererOrg
     ID: OrdererMSP
@@ -14,6 +20,12 @@ Organizations:
         Type: Signature
         Rule: "OR('OrdererMSP.admin')"
 
+  # -------------------------------------------------------------------
+  # KLINIK — Org dengan hak READ + WRITE
+  # Hanya klinik yang boleh menerbitkan dan mencabut surat sakit
+  # Writers: hanya admin & client (bukan peer) agar peer tidak bisa
+  # submit transaksi tulis secara langsung tanpa melalui aplikasi
+  # -------------------------------------------------------------------
   - &Klinik
     Name: KlinikMSP
     ID: KlinikMSP
@@ -28,10 +40,18 @@ Organizations:
       Admins:
         Type: Signature
         Rule: "OR('KlinikMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('KlinikMSP.peer')"
     AnchorPeers:
       - Host: peer0.klinik.example.com
         Port: 7051
 
+  # -------------------------------------------------------------------
+  # AKADEMIK — Org dengan hak READ ONLY (verifikasi surat)
+  # Writers tetap ada agar org bisa join channel & approve chaincode,
+  # tapi endorsement policy chaincode mengunci write hanya ke KlinikMSP
+  # -------------------------------------------------------------------
   - &Akademik
     Name: AkademikMSP
     ID: AkademikMSP
@@ -46,27 +66,12 @@ Organizations:
       Admins:
         Type: Signature
         Rule: "OR('AkademikMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('AkademikMSP.peer')"
     AnchorPeers:
       - Host: peer0.akademik.example.com
         Port: 9051
-
-  - &Mahasiswa
-    Name: MahasiswaMSP
-    ID: MahasiswaMSP
-    MSPDir: crypto-config/peerOrganizations/mahasiswa.example.com/msp
-    Policies:
-      Readers:
-        Type: Signature
-        Rule: "OR('MahasiswaMSP.admin', 'MahasiswaMSP.peer', 'MahasiswaMSP.client')"
-      Writers:
-        Type: Signature
-        Rule: "OR('MahasiswaMSP.admin', 'MahasiswaMSP.client')"
-      Admins:
-        Type: Signature
-        Rule: "OR('MahasiswaMSP.admin')"
-    AnchorPeers:
-      - Host: peer0.mahasiswa.example.com
-        Port: 8051
 
 Capabilities:
   Channel: &ChannelCapabilities
@@ -88,6 +93,18 @@ Application: &ApplicationDefaults
     Admins:
       Type: ImplicitMeta
       Rule: "MAJORITY Admins"
+    # -------------------------------------------------------------------
+    # ENDORSEMENT POLICY GLOBAL (default untuk semua chaincode)
+    # "OR" artinya cukup 1 org yang endorse — cocok karena hanya Klinik
+    # yang akan submit transaksi tulis. Akademik hanya query (evaluate),
+    # query tidak butuh endorsement policy.
+    # -------------------------------------------------------------------
+    LifecycleEndorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+    Endorsement:
+      Type: Signature
+      Rule: "OR('KlinikMSP.peer')"
   Capabilities:
     <<: *ApplicationCapabilities
 
@@ -138,7 +155,8 @@ Channel: &ChannelDefaults
     <<: *ChannelCapabilities
 
 Profiles:
-  ThreeOrgsOrdererGenesis:
+  # Genesis block — hanya 2 org
+  TwoOrgsOrdererGenesis:
     <<: *ChannelDefaults
     Orderer:
       <<: *OrdererDefaults
@@ -147,20 +165,19 @@ Profiles:
       Capabilities:
         <<: *OrdererCapabilities
     Consortiums:
-      SampleConsortium:
+      MedConsortium:
         Organizations:
           - *Klinik
           - *Akademik
-          - *Mahasiswa
 
-  ThreeOrgsChannel:
+  # Channel untuk transaksi surat sakit
+  TwoOrgsChannel:
     <<: *ChannelDefaults
-    Consortium: SampleConsortium
+    Consortium: MedConsortium
     Application:
       <<: *ApplicationDefaults
       Organizations:
         - *Klinik
         - *Akademik
-        - *Mahasiswa
       Capabilities:
-        <<: *ApplicationCapabilities
+        <<: *ApplicationCapabilitiesd
