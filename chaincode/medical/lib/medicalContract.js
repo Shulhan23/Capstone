@@ -34,6 +34,15 @@ class MedicalContract extends Contract {
     // =========================================================
     async IssueSuratSakit(ctx, id, hash, dokterID, klinikID, pasienID, tanggalTerbit) {
 
+        // Cek identitas pemanggil
+        const msp = ctx.clientIdentity.getMSPID();
+        if (msp !== 'KlinikMSP') {
+            throw new Error(
+                `Akses ditolak: hanya KlinikMSP yang boleh menerbitkan surat. ` +
+                `MSP kamu: ${msp}`
+            );
+        }
+
         // Cek apakah surat dengan ID ini sudah ada
         const exists = await this.SuratSakitExists(ctx, id);
         if (exists) {
@@ -109,6 +118,14 @@ class MedicalContract extends Contract {
     //   reason — alasan pencabutan
     // =========================================================
     async RevokeSuratSakit(ctx, id, reason) {
+
+        // Cek identitas pemanggil
+        const msp = ctx.clientIdentity.getMSPID();
+        if (msp !== 'KlinikMSP') {
+            throw new Error(
+                `Akses ditolak: hanya KlinikMSP yang boleh mencabut surat.`
+            );
+        }
 
         const suratSakit = await this.GetSuratSakit(ctx, id);
 
