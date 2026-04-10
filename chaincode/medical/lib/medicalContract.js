@@ -4,6 +4,26 @@ const { Contract } = require('fabric-contract-api');
 
 class MedicalContract extends Contract {
 
+    _validateInput(fields) {
+        for (const [nama, nilai] of Object.entries(fields)) {
+            if (!nilai || nilai.toString().trim() === '') {
+                throw new Error(`Field "${nama}" wajib diisi`);
+            }
+        }
+    }
+    
+    // Helper: validasi format SHA-256
+    _validateHash(hash) {
+        const sha256Pattern = /^[a-f0-9]{64}$/i;
+        if (!sha256Pattern.test(hash)) {
+            throw new Error(
+                `Format hash tidak valid. ` +
+                `Hash harus berupa SHA-256 (64 karakter hexadecimal). ` +
+                `Diterima: "${hash}"`
+            );
+        }
+    }
+
     constructor() {
         // Namespace contract — pola resmi dari fabric-chaincode-node
         super('MedicalContract');
@@ -37,11 +57,14 @@ class MedicalContract extends Contract {
         // Cek identitas pemanggil
         const msp = ctx.clientIdentity.getMSPID();
         if (msp !== 'KlinikMSP') {
-            throw new Error(
-                `Akses ditolak: hanya KlinikMSP yang boleh menerbitkan surat. ` +
-                `MSP kamu: ${msp}`
-            );
+            throw new Error('Akses ditolak: hanya KlinikMSP yang boleh menerbitkan surat');
         }
+    
+        // Validasi semua field wajib
+        this._validateInput({ id, hash, dokterID, klinikID, pasienID, tanggalTerbit });
+    
+        // Validasi format hash
+        this._validateHash(hash);
 
         // Cek apakah surat dengan ID ini sudah ada
         const exists = await this.SuratSakitExists(ctx, id);
@@ -86,6 +109,12 @@ class MedicalContract extends Contract {
     // Returns: { valid: boolean, status: string, data: object }
     // =========================================================
     async VerifySuratSakit(ctx, id, hash) {
+
+        // Validasi input
+        this._validateInput({ id, hash });
+    
+        // Validasi format hash — kalau format salah, pasti tidak cocok
+        this._validateHash(hash);
 
         const suratSakit = await this.GetSuratSakit(ctx, id);
 
