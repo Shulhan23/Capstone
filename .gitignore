@@ -6,3 +6,6 @@ channel-artifacts/
 *.key
 node_modules/
 .env
+data/
+chaincode/**/node_modules/
+chaincode/**/*.tar.gz
