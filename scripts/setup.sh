@@ -7,6 +7,9 @@
 
 set -e  # stop jika ada error
 
+# Simpan direktori proyek — semua path crypto relatif ke sini
+PROJECT_DIR=$PWD
+
 CHANNEL_NAME="medchannel"
 DOMAIN="example.com"  # ganti ke domain production saat migrasi
 
@@ -32,7 +35,8 @@ log "Semua binary tersedia."
 # 1. BERSIHKAN ARTEFAK LAMA
 # -----------------------------------------------------------------
 log "Membersihkan artefak lama..."
-rm -rf crypto-config channel-artifacts data
+rm -rf crypto-config channel-artifacts
+  sudo rm -rf data
 mkdir -p channel-artifacts data/couchdb/klinik data/couchdb/akademik
 
 # -----------------------------------------------------------------
@@ -46,6 +50,9 @@ log "Crypto material berhasil dibuat di ./crypto-config/"
 # 3. GENERATE GENESIS BLOCK
 # -----------------------------------------------------------------
 log "Generating genesis block..."
+# configtxgen: gunakan -configPath untuk baca configtx.yaml dari project dir
+# peer: butuh FABRIC_CFG_PATH ke fabric-samples/config untuk baca core.yaml
+export PATH=$PATH:$HOME/fabric-tools/fabric-samples/bin
 export FABRIC_CFG_PATH=$PWD
 configtxgen \
   -profile TwoOrgsOrdererGenesis \
@@ -89,97 +96,91 @@ log "Anchor peer Akademik: ./channel-artifacts/AkademikMSPanchors.tx"
 # 7. START DOCKER
 # -----------------------------------------------------------------
 log "Menjalankan docker compose..."
-docker compose up -d
+# Deteksi versi docker compose yang tersedia
+if docker compose version &>/dev/null; then
+  COMPOSE_CMD="docker compose"
+elif docker-compose version &>/dev/null; then
+  COMPOSE_CMD="docker-compose"
+else
+  error "Docker Compose tidak ditemukan. Install dengan: sudo apt install docker-compose-plugin"
+fi
+log "Menggunakan: $COMPOSE_CMD"
+$COMPOSE_CMD up -d
 
 log "Menunggu semua container healthy (60 detik)..."
-sleep 60
+sleep 120
 
 # Verifikasi
 RUNNING=$(docker ps --filter "status=running" --format "{{.Names}}" | wc -l)
 log "$RUNNING container berjalan."
 
 # -----------------------------------------------------------------
-# 8. BUAT CHANNEL
+# 8. BUAT CHANNEL (via CLI container — resolve DNS otomatis)
 # -----------------------------------------------------------------
-log "Membuat channel '$CHANNEL_NAME'..."
+log "Membuat channel '$CHANNEL_NAME' via CLI container..."
 
-ORDERER_CA="crypto-config/ordererOrganizations/${DOMAIN}/orderers/orderer.${DOMAIN}/msp/tlscacerts/tlsca.${DOMAIN}-cert.pem"
-PEER0_KLINIK_CA="crypto-config/peerOrganizations/klinik.${DOMAIN}/peers/peer0.klinik.${DOMAIN}/tls/ca.crt"
-PEER0_AKADEMIK_CA="crypto-config/peerOrganizations/akademik.${DOMAIN}/peers/peer0.akademik.${DOMAIN}/tls/ca.crt"
+# Path di dalam CLI container (sesuai volume mount di docker-compose)
+CLI_CRYPTO="/etc/hyperledger/fabric/crypto"
+CLI_ARTIFACTS="/etc/hyperledger/fabric/channel-artifacts"
+ORDERER_CA_CLI="${CLI_CRYPTO}/ordererOrganizations/${DOMAIN}/orderers/orderer.${DOMAIN}/msp/tlscacerts/tlsca.${DOMAIN}-cert.pem"
+PEER0_KLINIK_CA_CLI="${CLI_CRYPTO}/peerOrganizations/klinik.${DOMAIN}/peers/peer0.klinik.${DOMAIN}/tls/ca.crt"
+PEER0_AKADEMIK_CA_CLI="${CLI_CRYPTO}/peerOrganizations/akademik.${DOMAIN}/peers/peer0.akademik.${DOMAIN}/tls/ca.crt"
 
-export CORE_PEER_TLS_ENABLED=true
-export CORE_PEER_LOCALMSPID=KlinikMSP
-export CORE_PEER_MSPCONFIGPATH="crypto-config/peerOrganizations/klinik.${DOMAIN}/users/Admin@klinik.${DOMAIN}/msp"
-export CORE_PEER_ADDRESS=peer0.klinik.${DOMAIN}:7051
-export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_KLINIK_CA
-
-peer channel create \
+docker exec cli peer channel create \
   -o orderer.${DOMAIN}:7050 \
   --ordererTLSHostnameOverride orderer.${DOMAIN} \
   -c $CHANNEL_NAME \
-  -f ./channel-artifacts/${CHANNEL_NAME}.tx \
-  --outputBlock ./channel-artifacts/${CHANNEL_NAME}.block \
-  --tls --cafile $ORDERER_CA
+  -f ${CLI_ARTIFACTS}/${CHANNEL_NAME}.tx \
+  --outputBlock ${CLI_ARTIFACTS}/${CHANNEL_NAME}.block \
+  --tls --cafile $ORDERER_CA_CLI
 log "Channel '$CHANNEL_NAME' berhasil dibuat."
 
 # -----------------------------------------------------------------
 # 9. JOIN PEER KLINIK
 # -----------------------------------------------------------------
 log "Menggabungkan peer0.klinik ke channel..."
-peer channel join -b ./channel-artifacts/${CHANNEL_NAME}.block
+docker exec cli peer channel join -b ${CLI_ARTIFACTS}/${CHANNEL_NAME}.block
 log "peer0.klinik bergabung ke channel."
 
 # -----------------------------------------------------------------
 # 10. JOIN PEER AKADEMIK
 # -----------------------------------------------------------------
 log "Menggabungkan peer0.akademik ke channel..."
-export CORE_PEER_LOCALMSPID=AkademikMSP
-export CORE_PEER_MSPCONFIGPATH="crypto-config/peerOrganizations/akademik.${DOMAIN}/users/Admin@akademik.${DOMAIN}/msp"
-export CORE_PEER_ADDRESS=peer0.akademik.${DOMAIN}:9051
-export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_AKADEMIK_CA
-
-peer channel join -b ./channel-artifacts/${CHANNEL_NAME}.block
+docker exec -e CORE_PEER_LOCALMSPID=AkademikMSP \
+  -e CORE_PEER_ADDRESS=peer0.akademik.${DOMAIN}:9051 \
+  -e CORE_PEER_MSPCONFIGPATH=${CLI_CRYPTO}/peerOrganizations/akademik.${DOMAIN}/users/Admin@akademik.${DOMAIN}/msp \
+  -e CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_AKADEMIK_CA_CLI \
+  cli peer channel join -b ${CLI_ARTIFACTS}/${CHANNEL_NAME}.block
 log "peer0.akademik bergabung ke channel."
 
 # -----------------------------------------------------------------
 # 11. UPDATE ANCHOR PEERS
 # -----------------------------------------------------------------
 log "Mengupdate anchor peer Klinik..."
-export CORE_PEER_LOCALMSPID=KlinikMSP
-export CORE_PEER_MSPCONFIGPATH="crypto-config/peerOrganizations/klinik.${DOMAIN}/users/Admin@klinik.${DOMAIN}/msp"
-export CORE_PEER_ADDRESS=peer0.klinik.${DOMAIN}:7051
-export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_KLINIK_CA
-
-peer channel update \
+docker exec cli peer channel update \
   -o orderer.${DOMAIN}:7050 \
   --ordererTLSHostnameOverride orderer.${DOMAIN} \
   -c $CHANNEL_NAME \
-  -f ./channel-artifacts/KlinikMSPanchors.tx \
-  --tls --cafile $ORDERER_CA
+  -f ${CLI_ARTIFACTS}/KlinikMSPanchors.tx \
+  --tls --cafile $ORDERER_CA_CLI
 
 log "Mengupdate anchor peer Akademik..."
-export CORE_PEER_LOCALMSPID=AkademikMSP
-export CORE_PEER_MSPCONFIGPATH="crypto-config/peerOrganizations/akademik.${DOMAIN}/users/Admin@akademik.${DOMAIN}/msp"
-export CORE_PEER_ADDRESS=peer0.akademik.${DOMAIN}:9051
-export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_AKADEMIK_CA
-
-peer channel update \
+docker exec -e CORE_PEER_LOCALMSPID=AkademikMSP \
+  -e CORE_PEER_ADDRESS=peer0.akademik.${DOMAIN}:9051 \
+  -e CORE_PEER_MSPCONFIGPATH=${CLI_CRYPTO}/peerOrganizations/akademik.${DOMAIN}/users/Admin@akademik.${DOMAIN}/msp \
+  -e CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_AKADEMIK_CA_CLI \
+  cli peer channel update \
   -o orderer.${DOMAIN}:7050 \
   --ordererTLSHostnameOverride orderer.${DOMAIN} \
   -c $CHANNEL_NAME \
-  -f ./channel-artifacts/AkademikMSPanchors.tx \
-  --tls --cafile $ORDERER_CA
+  -f ${CLI_ARTIFACTS}/AkademikMSPanchors.tx \
+  --tls --cafile $ORDERER_CA_CLI
 
 # -----------------------------------------------------------------
 # 12. VERIFIKASI AKHIR
 # -----------------------------------------------------------------
 log "Verifikasi channel..."
-export CORE_PEER_LOCALMSPID=KlinikMSP
-export CORE_PEER_MSPCONFIGPATH="crypto-config/peerOrganizations/klinik.${DOMAIN}/users/Admin@klinik.${DOMAIN}/msp"
-export CORE_PEER_ADDRESS=peer0.klinik.${DOMAIN}:7051
-export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_KLINIK_CA
-
-peer channel list
+docker exec cli peer channel list
 
 echo ""
 echo -e "${GREEN}============================================${NC}"
