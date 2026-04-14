@@ -166,7 +166,19 @@ class MedicalContract extends Contract {
         while (!res.done) {
             const record = {
                 txId: res.value.txId,
-                timestamp: new Date(res.value.timestamp.seconds.low * 1000).toISOString(),
+                timestamp: (() => {
+                    try {
+                        const ts = hasil.value.timestamp;
+                        if (!ts) return null;
+                        // Fabric bisa return Long object atau number biasa
+                        const seconds = ts.seconds
+                            ? (typeof ts.seconds === 'object' ? ts.seconds.toNumber() : ts.seconds)
+                            : ts.low || 0;
+                        return new Date(seconds * 1000).toISOString();
+                    } catch (e) {
+                        return null;
+                    }
+                })(),
                 isDelete: res.value.isDelete,
                 data: res.value.isDelete ? null : JSON.parse(res.value.value.toString()),
             };
