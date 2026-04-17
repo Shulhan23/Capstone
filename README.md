@@ -13,7 +13,10 @@ Sistem ini menggunakan blockchain untuk memverifikasi keaslian surat sakit yang 
 4. [Langkah Instalasi](#langkah-instalasi)
 5. [Menjalankan Jaringan](#menjalankan-jaringan)
 6. [Verifikasi Jaringan](#verifikasi-jaringan)
-7. [Troubleshooting](#troubleshooting)
+7. [Deploy Chaincode](#deploy-chaincode)
+8. [Upgrade Chaincode](#upgrade-chaincode)
+9. [Perintah Berguna](#perintah-berguna)
+10. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -62,10 +65,9 @@ docker --version          # minimal 20.10
 docker compose version    # minimal v2.0
 ```
 
-Jika `docker compose version` error, install plugin-nya:
+Jika Docker Compose v2 belum ada:
 
 ```bash
-# Tambah repository Docker resmi
 sudo apt update
 sudo apt install ca-certificates curl gnupg -y
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -75,13 +77,9 @@ echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
   https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-# Install
 sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-
-# Verifikasi
-docker compose version    # harus muncul Docker Compose version v2.x.x
+docker compose version
 ```
 
 > **Pengguna WSL2 (Windows):**
@@ -94,18 +92,17 @@ docker compose version    # harus muncul Docker Compose version v2.x.x
 # Cek versi
 node --version    # minimal v18
 
-# Jika belum ada, install via nvm (direkomendasikan):
+# Install via nvm (direkomendasikan)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 source ~/.bashrc
 nvm install 18
 nvm use 18
-node --version
 ```
 
 ### 3. Hyperledger Fabric Binaries
 
 ```bash
-# Buat folder khusus untuk tools Fabric — PISAH dari folder proyek
+# Buat folder khusus — PISAH dari folder proyek
 mkdir -p ~/fabric-tools && cd ~/fabric-tools
 
 # Download binary Fabric 2.5
@@ -115,15 +112,25 @@ curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.5.0 1.5.7
 echo 'export PATH=$PATH:$HOME/fabric-tools/fabric-samples/bin' >> ~/.bashrc
 source ~/.bashrc
 
-# Verifikasi semua binary tersedia
-cryptogen version     # harus muncul versi
-configtxgen version   # harus muncul versi
-peer version          # harus muncul versi
+# Verifikasi
+cryptogen version
+configtxgen version
+peer version
 ```
 
-> **Catatan:** Folder `fabric-tools/` sengaja dipisah dari folder proyek `Capstone/`.
-> Ini adalah dependency eksternal — seperti `node_modules` untuk Node.js atau
-> `.gradle` untuk Java. Tidak perlu di-commit ke Git.
+> **Mengapa dipisah dari folder proyek?**
+> `fabric-tools/` adalah dependency eksternal seperti `node_modules`.
+> Tidak perlu di-commit ke Git.
+
+### 4. Pull Docker Image Fabric
+
+```bash
+# Image ini dibutuhkan untuk build chaincode Node.js
+docker pull hyperledger/fabric-nodeenv:2.5
+
+# Verifikasi
+docker images | grep nodeenv
+```
 
 ---
 
@@ -131,44 +138,36 @@ peer version          # harus muncul versi
 
 ```
 Capstone/
-├── chaincode/                    ← Smart contract Node.js (diisi nanti)
+├── chaincode/                    ← Smart contract Node.js
+│   └── medical/
+│       ├── index.js              ← Entry point chaincode
+│       ├── package.json          ← Dependencies chaincode
+│       └── lib/
+│           └── medicalContract.js ← Logika smart contract
 ├── channel-artifacts/            ← DIBUAT OTOMATIS oleh setup.sh
-│   ├── orderer.genesis.block     ← "Akta pendirian" jaringan
-│   ├── medchannel.tx             ← "Akta pendirian" channel
-│   ├── KlinikMSPanchors.tx       ← Anchor peer Klinik
-│   └── AkademikMSPanchors.tx     ← Anchor peer Akademik
+│   ├── orderer.genesis.block
+│   ├── medchannel.tx
+│   ├── KlinikMSPanchors.tx
+│   └── AkademikMSPanchors.tx
 ├── crypto-config/                ← DIBUAT OTOMATIS oleh setup.sh
-│   ├── ordererOrganizations/     ← Sertifikat orderer
-│   └── peerOrganizations/        ← Sertifikat tiap org & peer
+│   ├── ordererOrganizations/
+│   └── peerOrganizations/
 ├── data/                         ← DIBUAT OTOMATIS, data CouchDB
 ├── scripts/
-│   └── setup.sh                  ← Script otomasi setup jaringan
+│   ├── setup.sh                  ← Setup jaringan + channel
+│   ├── deploy-chaincode.sh       ← Deploy chaincode pertama kali
+│   ├── approve-commit.sh         ← Lanjut dari step approve
+│   └── upgrade-chaincode.sh      ← Upgrade chaincode versi baru
 ├── configtx.yaml                 ← Aturan channel & endorsement policy
 ├── crypto-config.yaml            ← Definisi organisasi & peer
 └── docker-compose.yaml           ← Konfigurasi container Docker
 ```
 
-> **Yang perlu di-commit ke Git:**
-> `configtx.yaml`, `crypto-config.yaml`, `docker-compose.yaml`, `scripts/`, `chaincode/`
+> **Yang di-commit ke Git:**
+> `chaincode/`, `scripts/`, `configtx.yaml`, `crypto-config.yaml`, `docker-compose.yaml`, `README.md`
 >
-> **Jangan di-commit** (tambahkan ke `.gitignore`):
-> `channel-artifacts/`, `crypto-config/`, `data/`
-
-### Isi `.gitignore` yang Disarankan
-
-```gitignore
-# Fabric generated — dibuat ulang otomatis oleh setup.sh
-channel-artifacts/
-crypto-config/
-data/
-
-# Package chaincode
-chaincode/**/*.tar.gz
-chaincode/**/node_modules/
-
-# Environment variables
-.env
-```
+> **Yang TIDAK di-commit** (ada di `.gitignore`):
+> `channel-artifacts/`, `crypto-config/`, `data/`, `node_modules/`
 
 ---
 
@@ -181,62 +180,56 @@ git clone <URL_REPOSITORY> ~/Capstone
 cd ~/Capstone
 ```
 
-### Step 2 — Verifikasi Fabric Binaries
+### Step 2 — Install Chaincode Dependencies
 
 ```bash
-# Pastikan binary bisa diakses
-which cryptogen    # harus tampil path
-which configtxgen  # harus tampil path
-which peer         # harus tampil path
-
-# Jika tidak ada, ikuti bagian Prasyarat → Hyperledger Fabric Binaries di atas
+cd ~/Capstone/chaincode/medical
+npm install
+cd ~/Capstone
 ```
 
-### Step 3 — Beri Izin Eksekusi pada Script
+### Step 3 — Beri Izin Eksekusi Script
 
 ```bash
 chmod +x scripts/setup.sh
+chmod +x scripts/deploy-chaincode.sh
+chmod +x scripts/approve-commit.sh
+chmod +x scripts/upgrade-chaincode.sh
 ```
 
 ---
 
 ## Menjalankan Jaringan
 
-### Jalankan Setup Otomatis
+### Setup Otomatis (Jaringan + Channel)
 
 ```bash
 cd ~/Capstone
 scripts/./setup.sh
 ```
 
-Script ini akan otomatis melakukan semua langkah berikut:
+Script ini melakukan semua langkah berikut secara otomatis:
 
 ```
-Langkah yang dijalankan setup.sh:
-
-  [1]  Periksa binary           → pastikan cryptogen, configtxgen, peer tersedia
-  [2]  Bersihkan artefak lama   → hapus crypto-config/, channel-artifacts/, data/
-  [3]  Generate crypto          → buat sertifikat TLS & identitas semua org
-  [4]  Generate genesis block   → buat "akta pendirian" jaringan
-  [5]  Generate channel tx      → buat "akta pendirian" channel medchannel
-  [6]  Generate anchor peers    → buat wakil komunikasi tiap org
-  [7]  Docker compose up        → start semua container
-  [8]  Tunggu container sehat   → pastikan semua container healthy
-  [9]  Buat channel             → buat channel medchannel via CLI container
-  [10] Join peer Klinik         → peer klinik masuk channel
-  [11] Join peer Akademik       → peer akademik masuk channel
-  [12] Update anchor Klinik     → set anchor peer klinik
-  [13] Update anchor Akademik   → set anchor peer akademik
-  [14] Verifikasi               → tampilkan daftar channel yang aktif
+[1]  Periksa binary Fabric tersedia
+[2]  Bersihkan artefak lama
+[3]  Generate crypto material    → sertifikat TLS semua org
+[4]  Generate genesis block      → akta pendirian jaringan
+[5]  Generate channel tx         → akta pendirian channel medchannel
+[6]  Generate anchor peer tx     → wakil komunikasi tiap org
+[7]  Docker compose up           → start semua container
+[8]  Tunggu container healthy
+[9]  Buat channel medchannel     → via CLI container
+[10] Join peer Klinik            → masuk channel
+[11] Join peer Akademik          → masuk channel
+[12] Update anchor peer Klinik
+[13] Update anchor peer Akademik
+[14] Verifikasi channel aktif
 ```
 
-Output akhir jika **berhasil:**
+Output akhir jika berhasil:
 
 ```
-[INFO] Verifikasi channel...
-Channels peers has joined:
-medchannel
-
 ============================================
  Setup selesai! Jaringan siap digunakan.
  Channel: medchannel
@@ -244,18 +237,11 @@ medchannel
 ============================================
 ```
 
-### Reset dan Jalankan Ulang dari Awal
-
-Gunakan ini jika ada error atau ingin mulai bersih:
+### Reset Jaringan dari Awal
 
 ```bash
-# 1. Hentikan dan hapus semua container + volume Docker
 docker compose down -v
-
-# 2. Hapus data CouchDB (perlu sudo karena dibuat oleh container)
 sudo rm -rf data/
-
-# 3. Jalankan ulang
 scripts/./setup.sh
 ```
 
@@ -263,51 +249,175 @@ scripts/./setup.sh
 
 ## Verifikasi Jaringan
 
-Setelah setup selesai, gunakan perintah berikut untuk memastikan semua berjalan normal.
-
-### Cek Status Container
-
 ```bash
-docker ps
-```
+# Cek semua container berjalan
+docker ps --format "table {{.Names}}\t{{.Status}}"
 
-Output yang diharapkan — semua container harus `Up`:
+# Output yang diharapkan:
+# orderer.example.com             Up X minutes (healthy)
+# peer0.klinik.example.com        Up X minutes (healthy)
+# peer0.akademik.example.com      Up X minutes (healthy)
+# couchdb.klinik                  Up X minutes (healthy)
+# couchdb.akademik                Up X minutes (healthy)
+# cli                             Up X minutes
 
-```
-NAMES                           STATUS
-orderer.example.com             Up X minutes (healthy)
-peer0.klinik.example.com        Up X minutes (healthy)
-peer0.akademik.example.com      Up X minutes (healthy)
-couchdb.klinik                  Up X minutes (healthy)
-couchdb.akademik                Up X minutes (healthy)
-cli                             Up X minutes
-```
-
-### Cek Channel Aktif
-
-```bash
+# Cek channel aktif
 docker exec cli peer channel list
+# Output: medchannel
 ```
 
-Output yang diharapkan:
+---
 
-```
-Channels peers has joined:
-medchannel
-```
+## Deploy Chaincode
 
-### Cek Info Detail Channel
+### Deploy Pertama Kali
 
 ```bash
-docker exec cli peer channel getinfo -c medchannel
+scripts/./deploy-chaincode.sh
 ```
 
-### Akses CouchDB via Browser (opsional)
+Script ini menjalankan lifecycle chaincode Fabric 2.x:
 
 ```
-Klinik   → http://localhost:5984/_utils  (user: admin | pass: adminpw)
-Akademik → http://localhost:6984/_utils  (user: admin | pass: adminpw)
+[1/6] Package    → bungkus chaincode jadi .tar.gz
+[2/6] Install    → install ke peer Klinik & Akademik
+[3/6] Package ID → ambil ID dari chaincode yang ter-install
+[4/6] Approve    → kedua org setujui definisi chaincode
+[5/6] Readiness  → cek semua org sudah approve (harus semua true)
+[6/6] Commit     → daftarkan chaincode ke channel, siap dipakai
 ```
+
+Output akhir jika berhasil:
+
+```
+============================================
+ Chaincode berhasil di-deploy!
+ Nama    : medical
+ Versi   : 1.0
+ Channel : medchannel
+============================================
+```
+
+### Jika Gagal di Tengah Proses
+
+Jika chaincode sudah ter-install tapi gagal saat approve:
+
+```bash
+# Cek dan fix permission CouchDB dulu
+sudo chown -R 5984:5984 data/couchdb/klinik/
+sudo chown -R 5984:5984 data/couchdb/akademik/
+docker restart couchdb.klinik couchdb.akademik
+sleep 15
+
+# Lanjut dari step approve (tanpa install ulang)
+scripts/./approve-commit.sh
+```
+
+### Verifikasi Chaincode Aktif
+
+```bash
+# Cek chaincode sudah committed
+docker exec cli peer lifecycle chaincode querycommitted \
+  --channelID medchannel --name medical
+
+# Test invoke — terbitkan surat pertama
+docker exec cli peer chaincode invoke \
+  -o orderer.example.com:7050 \
+  --ordererTLSHostnameOverride orderer.example.com \
+  --tls --cafile /etc/hyperledger/fabric/crypto/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem \
+  -C medchannel -n medical \
+  --peerAddresses peer0.klinik.example.com:7051 \
+  --tlsRootCertFiles /etc/hyperledger/fabric/crypto/peerOrganizations/klinik.example.com/peers/peer0.klinik.example.com/tls/ca.crt \
+  -c '{"function":"IssueSuratSakit","Args":["SS-001","abc123hash","D-001","K-001","P-001","2026-04-10"]}'
+
+# Test query — verifikasi surat
+docker exec cli peer chaincode query \
+  -C medchannel -n medical \
+  -c '{"function":"VerifySuratSakit","Args":["SS-001","abc123hash"]}'
+
+# Output yang diharapkan: {"valid":true,"reason":"VALID",...}
+```
+
+---
+
+## Upgrade Chaincode
+
+Jika ada perubahan pada kode chaincode, jalankan upgrade:
+
+```bash
+# WAJIB: edit dua angka ini di scripts/upgrade-chaincode.sh
+# sebelum menjalankan
+#   CHAINCODE_VERSION="2.0"   ← naik dari 1.0
+#   CHAINCODE_SEQUENCE="2"    ← naik dari 1
+
+scripts/./upgrade-chaincode.sh
+```
+
+> **Aturan upgrade:**
+> Setiap perubahan kode chaincode — sekecil apapun —
+> wajib menaikkan `CHAINCODE_VERSION` dan `CHAINCODE_SEQUENCE`.
+> Data di ledger tidak hilang saat upgrade.
+
+---
+
+## Perintah Berguna
+
+```bash
+# Masuk ke CLI container
+docker exec -it cli bash
+
+# Lihat log container
+docker logs orderer.example.com -f
+docker logs peer0.klinik.example.com -f
+docker logs peer0.akademik.example.com -f
+docker logs couchdb.klinik -f
+
+# Stop jaringan (data tetap tersimpan)
+docker compose stop
+
+# Start kembali setelah stop
+docker compose start
+
+# Reset total — hapus semua data
+docker compose down -v
+sudo rm -rf data/
+
+# Cek chaincode yang ter-install di peer
+docker exec cli peer lifecycle chaincode queryinstalled
+
+# Cek chaincode yang sudah committed di channel
+docker exec cli peer lifecycle chaincode querycommitted \
+  --channelID medchannel
+```
+
+---
+
+## Fungsi Chaincode
+
+Smart contract `medical` menyimpan data berikut di blockchain:
+
+| Field | Keterangan |
+|---|---|
+| `id` | Nomor unik surat sakit |
+| `hash` | SHA-256 dari konten surat (dibuat di backend) |
+| `dokterID` | ID dokter penerbit (referensi ke MySQL) |
+| `klinikID` | ID klinik penerbit (referensi ke MySQL) |
+| `pasienID` | ID pasien (referensi ke MySQL) |
+| `tanggalTerbit` | Tanggal penerbitan surat |
+| `status` | `ACTIVE` atau `REVOKED` |
+| `revokeReason` | Alasan pencabutan (kosong jika aktif) |
+
+Fungsi yang tersedia:
+
+| Fungsi | Akses | Keterangan |
+|---|---|---|
+| `IssueSuratSakit` | Klinik | Terbitkan surat baru ke ledger |
+| `VerifySuratSakit` | Semua org | Verifikasi hash + status surat |
+| `RevokeSuratSakit` | Klinik | Cabut surat yang sudah terbit |
+| `GetSuratSakit` | Semua org | Ambil data surat berdasarkan ID |
+| `GetHistoryById` | Semua org | Riwayat perubahan surat (audit trail) |
+| `QueryByKlinik` | Semua org | Semua surat dari klinik tertentu |
+| `QueryByDokter` | Semua org | Semua surat dari dokter tertentu |
 
 ---
 
@@ -316,61 +426,61 @@ Akademik → http://localhost:6984/_utils  (user: admin | pass: adminpw)
 ### Container unhealthy / tidak mau start
 
 ```bash
-# Lihat log container yang bermasalah
-docker logs orderer.example.com 2>&1 | tail -30
-docker logs peer0.klinik.example.com 2>&1 | tail -30
-docker logs peer0.akademik.example.com 2>&1 | tail -30
-
-# Solusi: reset total
+docker logs <nama_container> 2>&1 | tail -30
 docker compose down -v
 sudo rm -rf data/
 scripts/./setup.sh
 ```
 
-### Permission denied saat hapus folder data/
+### Permission denied saat hapus data/
 
 ```bash
-# File CouchDB dibuat oleh container sebagai root
-# Gunakan sudo untuk menghapusnya
 sudo rm -rf data/
 ```
 
-### Error: Config File "core" Not Found
-
-Terjadi jika `FABRIC_CFG_PATH` salah atau binary belum di-install.
+### CouchDB error: permission denied pada shards
 
 ```bash
-# Verifikasi file core.yaml ada di sini
-ls ~/fabric-tools/fabric-samples/config/core.yaml
-
-# Jika tidak ada, download ulang fabric binaries
-cd ~/fabric-tools
-curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.5.0 1.5.7
+sudo chown -R 5984:5984 data/couchdb/klinik/
+sudo chown -R 5984:5984 data/couchdb/akademik/
+docker restart couchdb.klinik couchdb.akademik
+sleep 15
 ```
 
 ### Error: no such host
 
-Terjadi jika perintah `peer` dijalankan langsung dari terminal, bukan dari dalam container.
+Pastikan semua perintah `peer` dijalankan via `docker exec cli`, bukan langsung dari terminal:
 
 ```bash
-# SALAH — dijalankan dari terminal host
+# SALAH
 peer channel list
 
-# BENAR — dijalankan dari dalam container CLI
+# BENAR
 docker exec cli peer channel list
 ```
 
-Nama seperti `orderer.example.com` hanya dikenal di dalam Docker network `fabric_network`.
-Container CLI sudah berada di dalam network tersebut sehingga bisa resolve nama tersebut.
-
-### Error: docker compose not found
+### Error: fabric-nodeenv image not found
 
 ```bash
-# Cek versi yang tersedia
-docker-compose version    # v1, sudah deprecated
-docker compose version    # v2, yang dipakai script ini
+docker pull hyperledger/fabric-nodeenv:2.5
+```
 
-# Jika hanya v1 yang ada, install v2 (lihat bagian Prasyarat)
+### Chaincode gagal di approve — CouchDB internal server error
+
+```bash
+sudo chown -R 5984:5984 data/couchdb/
+docker restart couchdb.klinik couchdb.akademik
+sleep 15
+scripts/./approve-commit.sh
+```
+
+### Upgrade chaincode gagal — sequence error
+
+Pastikan `CHAINCODE_SEQUENCE` di `upgrade-chaincode.sh` selalu lebih besar dari sequence sebelumnya. Cek sequence saat ini:
+
+```bash
+docker exec cli peer lifecycle chaincode querycommitted \
+  --channelID medchannel --name medical
 ```
 
 ---
@@ -381,23 +491,12 @@ docker compose version    # v2, yang dipakai script ini
 |---|---|---|
 | orderer.example.com | 7050 | gRPC komunikasi peer |
 | orderer.example.com | 7053 | Admin channel management |
-| orderer.example.com | 8443 | Health check & metrics |
+| orderer.example.com | 8443 | Health check |
 | peer0.klinik | 7051 | gRPC peer |
 | peer0.klinik | 7052 | Chaincode |
 | peer0.klinik | 9443 | Operations |
 | peer0.akademik | 9051 | gRPC peer |
 | peer0.akademik | 9052 | Chaincode |
 | peer0.akademik | 10443 | Operations |
-| couchdb.klinik | 5984 | CouchDB UI & API |
-| couchdb.akademik | 6984 | CouchDB UI & API |
-
----
-
-## Informasi Tim
-
-| Peran | Tanggung Jawab |
-|---|---|
-| Blockchain Engineer | Setup jaringan, konfigurasi, deployment infrastruktur |
-| Blockchain Developer | Chaincode Node.js, REST API, integrasi Fabric Gateway SDK |
-| Web Developer | Dashboard klinik, form rekam medis, halaman verifikasi |
-| Mobile Developer | Aplikasi dokter/pasien, fitur scan QR code |
+| couchdb.klinik | 5984 | CouchDB UI → http://localhost:5984/_utils |
+| couchdb.akademik | 6984 | CouchDB UI → http://localhost:6984/_utils |
