@@ -9,3 +9,6 @@ node_modules/
 data/
 chaincode/**/node_modules/
 chaincode/**/*.tar.gz
+organizations/
+wallet/
+*_sk

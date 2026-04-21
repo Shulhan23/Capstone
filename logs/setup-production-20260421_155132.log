@@ -1,0 +1,706 @@
+[2026-04-21 15:51:33][INFO ] Docker   : 29.4.0
+[2026-04-21 15:51:34][INFO ] Configtxgen: configtxgen:
+[2026-04-21 15:51:34][INFO ] CA Client: v1.5.7
+time="2026-04-21T15:51:34+07:00" level=warning msg="/home/shulhan/Capstone/docker-compose.yaml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+[?25l[0G[+] down 0/6
+ [33m⠋[0m Container ca.klinik.medchain.id   Stopping                                                    [34m0.1s[0m
+ [33m⠋[0m Container cli                     Stopping                                                    [34m0.1s[0m
+ [33m⠋[0m Container ca.akademik.medchain.id Stopping                                                    [34m0.1s[0m
+ [33m⠋[0m Container orderer3.medchain.id    Stopping                                                    [34m0.1s[0m
+ [33m⠋[0m Container orderer2.medchain.id    Stopping                                                    [34m0.1s[0m
+ [33m⠋[0m Container ca.orderer.medchain.id  Stopping                                                    [34m0.1s[0m
+[?25h[?25l[7A[0G[+] down 0/6
+ [33m⠙[0m Container ca.klinik.medchain.id   Stopping                                                    [34m0.2s[0m
+ [33m⠙[0m Container cli                     Stopping                                                    [34m0.2s[0m
+ [33m⠙[0m Container ca.akademik.medchain.id Stopping                                                    [34m0.2s[0m
+ [33m⠙[0m Container orderer3.medchain.id    Stopping                                                    [34m0.2s[0m
+ [33m⠙[0m Container orderer2.medchain.id    Stopping                                                    [34m0.2s[0m
+ [33m⠙[0m Container ca.orderer.medchain.id  Stopping                                                    [34m0.2s[0m
+[?25h[?25l[7A[0G[+] down 0/6
+ [33m⠹[0m Container ca.klinik.medchain.id   Stopping                                                    [34m0.3s[0m
+ [33m⠹[0m Container cli                     Stopping                                                    [34m0.3s[0m
+ [33m⠹[0m Container ca.akademik.medchain.id Stopping                                                    [34m0.3s[0m
+ [33m⠹[0m Container orderer3.medchain.id    Stopping                                                    [34m0.3s[0m
+ [33m⠹[0m Container orderer2.medchain.id    Stopping                                                    [34m0.3s[0m
+ [33m⠹[0m Container ca.orderer.medchain.id  Stopping                                                    [34m0.3s[0m
+[?25h[?25l[7A[0G[+] down 0/6
+ [33m⠸[0m Container ca.klinik.medchain.id   Stopping                                                    [34m0.4s[0m
+ [33m⠸[0m Container cli                     Stopping                                                    [34m0.4s[0m
+ [33m⠸[0m Container ca.akademik.medchain.id Stopping                                                    [34m0.4s[0m
+ [33m⠸[0m Container orderer3.medchain.id    Stopping                                                    [34m0.4s[0m
+ [33m⠸[0m Container orderer2.medchain.id    Stopping                                                    [34m0.4s[0m
+ [33m⠸[0m Container ca.orderer.medchain.id  Stopping                                                    [34m0.4s[0m
+[?25h[?25l[7A[0G[+] down 0/6
+ [33m⠼[0m Container ca.klinik.medchain.id   Stopping                                                    [34m0.5s[0m
+ [33m⠼[0m Container cli                     Stopping                                                    [34m0.5s[0m
+ [33m⠼[0m Container ca.akademik.medchain.id Stopping                                                    [34m0.5s[0m
+ [33m⠼[0m Container orderer3.medchain.id    Stopping                                                    [34m0.5s[0m
+ [33m⠼[0m Container orderer2.medchain.id    Stopping                                                    [34m0.5s[0m
+ [33m⠼[0m Container ca.orderer.medchain.id  Stopping                                                    [34m0.5s[0m
+[?25h[?25l[7A[0G[+] down 0/6
+ [33m⠴[0m Container ca.klinik.medchain.id   Stopping                                                    [34m0.6s[0m
+ [33m⠴[0m Container cli                     Stopping                                                    [34m0.6s[0m
+ [33m⠴[0m Container ca.akademik.medchain.id Stopping                                                    [34m0.6s[0m
+ [33m⠴[0m Container orderer3.medchain.id    Stopping                                                    [34m0.6s[0m
+ [33m⠴[0m Container orderer2.medchain.id    Stopping                                                    [34m0.6s[0m
+ [33m⠴[0m Container ca.orderer.medchain.id  Stopping                                                    [34m0.6s[0m
+[?25h[?25l[7A[0G[+] down 0/6
+ [33m⠦[0m Container ca.klinik.medchain.id   Stopping                                                    [34m0.7s[0m
+ [33m⠦[0m Container cli                     Stopping                                                    [34m0.7s[0m
+ [33m⠦[0m Container ca.akademik.medchain.id Stopping                                                    [34m0.7s[0m
+ [33m⠦[0m Container orderer3.medchain.id    Stopping                                                    [34m0.7s[0m
+ [33m⠦[0m Container orderer2.medchain.id    Stopping                                                    [34m0.7s[0m
+ [33m⠦[0m Container ca.orderer.medchain.id  Stopping                                                    [34m0.7s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠧[0m Container ca.klinik.medchain.id   Stopping                                                    [34m0.8s[0m
+ [33m⠧[0m Container cli                     Stopping                                                    [34m0.8s[0m
+ [33m⠧[0m Container ca.akademik.medchain.id Stopping                                                    [34m0.8s[0m
+ [33m⠧[0m Container orderer3.medchain.id    Stopping                                                    [34m0.8s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠧[0m Container ca.orderer.medchain.id  Stopping                                                    [34m0.8s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠇[0m Container ca.klinik.medchain.id   Stopping                                                    [34m0.9s[0m
+ [33m⠇[0m Container cli                     Stopping                                                    [34m0.9s[0m
+ [33m⠇[0m Container ca.akademik.medchain.id Stopping                                                    [34m0.9s[0m
+ [33m⠇[0m Container orderer3.medchain.id    Stopping                                                    [34m0.9s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠇[0m Container ca.orderer.medchain.id  Stopping                                                    [34m0.9s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠏[0m Container ca.klinik.medchain.id   Stopping                                                    [34m1.0s[0m
+ [33m⠏[0m Container cli                     Stopping                                                    [34m1.0s[0m
+ [33m⠏[0m Container ca.akademik.medchain.id Stopping                                                    [34m1.0s[0m
+ [33m⠏[0m Container orderer3.medchain.id    Stopping                                                    [34m1.0s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠏[0m Container ca.orderer.medchain.id  Stopping                                                    [34m1.0s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠋[0m Container ca.klinik.medchain.id   Stopping                                                    [34m1.1s[0m
+ [33m⠋[0m Container cli                     Stopping                                                    [34m1.1s[0m
+ [33m⠋[0m Container ca.akademik.medchain.id Stopping                                                    [34m1.1s[0m
+ [33m⠋[0m Container orderer3.medchain.id    Stopping                                                    [34m1.1s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠋[0m Container ca.orderer.medchain.id  Stopping                                                    [34m1.1s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠙[0m Container ca.klinik.medchain.id   Stopping                                                    [34m1.2s[0m
+ [33m⠙[0m Container cli                     Stopping                                                    [34m1.2s[0m
+ [33m⠙[0m Container ca.akademik.medchain.id Stopping                                                    [34m1.2s[0m
+ [33m⠙[0m Container orderer3.medchain.id    Stopping                                                    [34m1.2s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠙[0m Container ca.orderer.medchain.id  Stopping                                                    [34m1.2s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠹[0m Container ca.klinik.medchain.id   Stopping                                                    [34m1.3s[0m
+ [33m⠹[0m Container cli                     Stopping                                                    [34m1.3s[0m
+ [33m⠹[0m Container ca.akademik.medchain.id Stopping                                                    [34m1.3s[0m
+ [33m⠹[0m Container orderer3.medchain.id    Stopping                                                    [34m1.3s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠹[0m Container ca.orderer.medchain.id  Stopping                                                    [34m1.3s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠸[0m Container ca.klinik.medchain.id   Stopping                                                    [34m1.4s[0m
+ [33m⠸[0m Container cli                     Stopping                                                    [34m1.4s[0m
+ [33m⠸[0m Container ca.akademik.medchain.id Stopping                                                    [34m1.4s[0m
+ [33m⠸[0m Container orderer3.medchain.id    Stopping                                                    [34m1.4s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠸[0m Container ca.orderer.medchain.id  Stopping                                                    [34m1.4s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠼[0m Container ca.klinik.medchain.id   Stopping                                                    [34m1.5s[0m
+ [33m⠼[0m Container cli                     Stopping                                                    [34m1.5s[0m
+ [33m⠼[0m Container ca.akademik.medchain.id Stopping                                                    [34m1.5s[0m
+ [33m⠼[0m Container orderer3.medchain.id    Stopping                                                    [34m1.5s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠼[0m Container ca.orderer.medchain.id  Stopping                                                    [34m1.5s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠴[0m Container ca.klinik.medchain.id   Stopping                                                    [34m1.6s[0m
+ [33m⠴[0m Container cli                     Stopping                                                    [34m1.6s[0m
+ [33m⠴[0m Container ca.akademik.medchain.id Stopping                                                    [34m1.6s[0m
+ [33m⠴[0m Container orderer3.medchain.id    Stopping                                                    [34m1.6s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠴[0m Container ca.orderer.medchain.id  Stopping                                                    [34m1.6s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠦[0m Container ca.klinik.medchain.id   Stopping                                                    [34m1.7s[0m
+ [33m⠦[0m Container cli                     Stopping                                                    [34m1.7s[0m
+ [33m⠦[0m Container ca.akademik.medchain.id Stopping                                                    [34m1.7s[0m
+ [33m⠦[0m Container orderer3.medchain.id    Removing                                                    [34m1.7s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠦[0m Container ca.orderer.medchain.id  Stopping                                                    [34m1.7s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠧[0m Container ca.klinik.medchain.id   Stopping                                                    [34m1.8s[0m
+ [33m⠧[0m Container cli                     Stopping                                                    [34m1.8s[0m
+ [33m⠧[0m Container ca.akademik.medchain.id Stopping                                                    [34m1.8s[0m
+ [33m⠧[0m Container orderer3.medchain.id    Removing                                                    [34m1.8s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠧[0m Container ca.orderer.medchain.id  Stopping                                                    [34m1.8s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠇[0m Container ca.klinik.medchain.id   Stopping                                                    [34m1.9s[0m
+ [33m⠇[0m Container cli                     Stopping                                                    [34m1.9s[0m
+ [33m⠇[0m Container ca.akademik.medchain.id Stopping                                                    [34m1.9s[0m
+ [33m⠇[0m Container orderer3.medchain.id    Removing                                                    [34m1.9s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠇[0m Container ca.orderer.medchain.id  Stopping                                                    [34m1.9s[0m
+[?25h[?25l[7A[0G[+] down 1/6
+ [33m⠏[0m Container ca.klinik.medchain.id   Stopping                                                    [34m2.0s[0m
+ [33m⠏[0m Container cli                     Stopping                                                    [34m2.0s[0m
+ [33m⠏[0m Container ca.akademik.medchain.id Stopping                                                    [34m2.0s[0m
+ [33m⠏[0m Container orderer3.medchain.id    Removing                                                    [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠏[0m Container ca.orderer.medchain.id  Stopping                                                    [34m2.0s[0m
+[?25h[?25l[7A[0G[+] down 2/6
+ [33m⠋[0m Container ca.klinik.medchain.id   Stopping                                                    [34m2.1s[0m
+ [33m⠋[0m Container cli                     Stopping                                                    [34m2.1s[0m
+ [33m⠋[0m Container ca.akademik.medchain.id Stopping                                                    [34m2.1s[0m
+ [32m✔[0m Container orderer3.medchain.id    [32mRemoved[0m                                                     [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠋[0m Container ca.orderer.medchain.id  Stopping                                                    [34m2.1s[0m
+[?25h[?25l[7A[0G[+] down 2/6
+ [33m⠙[0m Container ca.klinik.medchain.id   Stopping                                                    [34m2.3s[0m
+ [33m⠙[0m Container cli                     Stopping                                                    [34m2.3s[0m
+ [33m⠙[0m Container ca.akademik.medchain.id Stopping                                                    [34m2.3s[0m
+ [32m✔[0m Container orderer3.medchain.id    [32mRemoved[0m                                                     [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠙[0m Container ca.orderer.medchain.id  Stopping                                                    [34m2.3s[0m
+[?25h[?25l[7A[0G[+] down 2/6
+ [33m⠹[0m Container ca.klinik.medchain.id   Stopping                                                    [34m2.4s[0m
+ [33m⠹[0m Container cli                     Stopping                                                    [34m2.4s[0m
+ [33m⠹[0m Container ca.akademik.medchain.id Stopping                                                    [34m2.4s[0m
+ [32m✔[0m Container orderer3.medchain.id    [32mRemoved[0m                                                     [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠹[0m Container ca.orderer.medchain.id  Stopping                                                    [34m2.4s[0m
+[?25h[?25l[7A[0G[+] down 2/6
+ [33m⠸[0m Container ca.klinik.medchain.id   Stopping                                                    [34m2.5s[0m
+ [33m⠸[0m Container cli                     Stopping                                                    [34m2.5s[0m
+ [33m⠸[0m Container ca.akademik.medchain.id Stopping                                                    [34m2.5s[0m
+ [32m✔[0m Container orderer3.medchain.id    [32mRemoved[0m                                                     [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠸[0m Container ca.orderer.medchain.id  Stopping                                                    [34m2.5s[0m
+[?25h[?25l[7A[0G[+] down 2/6
+ [33m⠼[0m Container ca.klinik.medchain.id   Stopping                                                    [34m2.6s[0m
+ [33m⠼[0m Container cli                     Stopping                                                    [34m2.6s[0m
+ [33m⠼[0m Container ca.akademik.medchain.id Stopping                                                    [34m2.6s[0m
+ [32m✔[0m Container orderer3.medchain.id    [32mRemoved[0m                                                     [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠼[0m Container ca.orderer.medchain.id  Stopping                                                    [34m2.6s[0m
+[?25h[?25l[7A[0G[+] down 2/6
+ [33m⠴[0m Container ca.klinik.medchain.id   Stopping                                                    [34m2.7s[0m
+ [33m⠴[0m Container cli                     Removing                                                    [34m2.7s[0m
+ [33m⠴[0m Container ca.akademik.medchain.id Stopping                                                    [34m2.7s[0m
+ [32m✔[0m Container orderer3.medchain.id    [32mRemoved[0m                                                     [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id    [32mRemoved[0m                                                     [34m0.7s[0m
+ [33m⠴[0m Container ca.orderer.medchain.id  Stopping                                                    [34m2.7s[0m
+[?25h[?25l[7A[0G[+] down 3/8
+ [33m⠦[0m Container ca.klinik.medchain.id      Stopping                                                 [34m2.8s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [33m⠦[0m Container ca.akademik.medchain.id    Stopping                                                 [34m2.8s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠦[0m Container ca.orderer.medchain.id     Stopping                                                 [34m2.8s[0m
+ [33m⠋[0m Container peer0.akademik.medchain.id Stopping                                                 [34m0.0s[0m
+ [33m⠋[0m Container peer0.klinik.medchain.id   Stopping                                                 [34m0.0s[0m
+[?25h[?25l[9A[0G[+] down 3/8
+ [33m⠧[0m Container ca.klinik.medchain.id      Stopping                                                 [34m2.9s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [33m⠧[0m Container ca.akademik.medchain.id    Stopping                                                 [34m2.9s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠧[0m Container ca.orderer.medchain.id     Stopping                                                 [34m2.9s[0m
+ [33m⠙[0m Container peer0.akademik.medchain.id Stopping                                                 [34m0.1s[0m
+ [33m⠙[0m Container peer0.klinik.medchain.id   Stopping                                                 [34m0.1s[0m
+[?25h[?25l[9A[0G[+] down 3/8
+ [33m⠇[0m Container ca.klinik.medchain.id      Stopping                                                 [34m3.0s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [33m⠇[0m Container ca.akademik.medchain.id    Stopping                                                 [34m3.0s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠇[0m Container ca.orderer.medchain.id     Removing                                                 [34m3.0s[0m
+ [33m⠹[0m Container peer0.akademik.medchain.id Stopping                                                 [34m0.2s[0m
+ [33m⠹[0m Container peer0.klinik.medchain.id   Stopping                                                 [34m0.2s[0m
+[?25h[?25l[9A[0G[+] down 3/8
+ [33m⠏[0m Container ca.klinik.medchain.id      Stopping                                                 [34m3.1s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [33m⠏[0m Container ca.akademik.medchain.id    Stopping                                                 [34m3.1s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠏[0m Container ca.orderer.medchain.id     Removing                                                 [34m3.1s[0m
+ [33m⠸[0m Container peer0.akademik.medchain.id Stopping                                                 [34m0.3s[0m
+ [33m⠸[0m Container peer0.klinik.medchain.id   Stopping                                                 [34m0.3s[0m
+[?25h[?25l[9A[0G[+] down 4/8
+ [33m⠋[0m Container ca.klinik.medchain.id      Stopping                                                 [34m3.2s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [33m⠋[0m Container ca.akademik.medchain.id    Stopping                                                 [34m3.2s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠼[0m Container peer0.akademik.medchain.id Stopping                                                 [34m0.4s[0m
+ [33m⠼[0m Container peer0.klinik.medchain.id   Stopping                                                 [34m0.4s[0m
+[?25h[?25l[9A[0G[+] down 4/8
+ [33m⠙[0m Container ca.klinik.medchain.id      Stopping                                                 [34m3.3s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [33m⠙[0m Container ca.akademik.medchain.id    Removing                                                 [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠴[0m Container peer0.akademik.medchain.id Stopping                                                 [34m0.5s[0m
+ [33m⠴[0m Container peer0.klinik.medchain.id   Stopping                                                 [34m0.5s[0m
+[?25h[?25l[9A[0G[+] down 5/8
+ [33m⠹[0m Container ca.klinik.medchain.id      Stopping                                                 [34m3.4s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠦[0m Container peer0.akademik.medchain.id Stopping                                                 [34m0.6s[0m
+ [33m⠦[0m Container peer0.klinik.medchain.id   Stopping                                                 [34m0.6s[0m
+[?25h[?25l[9A[0G[+] down 5/8
+ [33m⠸[0m Container ca.klinik.medchain.id      Removing                                                 [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠧[0m Container peer0.akademik.medchain.id Stopping                                                 [34m0.7s[0m
+ [33m⠧[0m Container peer0.klinik.medchain.id   Stopping                                                 [34m0.7s[0m
+[?25h[?25l[9A[0G[+] down 6/8
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠇[0m Container peer0.akademik.medchain.id Stopping                                                 [34m0.8s[0m
+ [33m⠇[0m Container peer0.klinik.medchain.id   Stopping                                                 [34m0.8s[0m
+[?25h[?25l[9A[0G[+] down 6/8
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠏[0m Container peer0.akademik.medchain.id Stopping                                                 [34m0.9s[0m
+ [33m⠏[0m Container peer0.klinik.medchain.id   Stopping                                                 [34m0.9s[0m
+[?25h[?25l[9A[0G[+] down 6/8
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠋[0m Container peer0.akademik.medchain.id Stopping                                                 [34m1.0s[0m
+ [33m⠋[0m Container peer0.klinik.medchain.id   Removing                                                 [34m1.0s[0m
+[?25h[?25l[9A[0G[+] down 6/8
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠙[0m Container peer0.akademik.medchain.id Stopping                                                 [34m1.1s[0m
+ [33m⠙[0m Container peer0.klinik.medchain.id   Removing                                                 [34m1.1s[0m
+[?25h[?25l[9A[0G[+] down 7/9
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠹[0m Container peer0.akademik.medchain.id Stopping                                                 [34m1.2s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠋[0m Container couchdb.klinik             Stopping                                                 [34m0.0s[0m
+[?25h[?25l[10A[0G[+] down 7/9
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠸[0m Container peer0.akademik.medchain.id Stopping                                                 [34m1.3s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠙[0m Container couchdb.klinik             Stopping                                                 [34m0.1s[0m
+[?25h[?25l[10A[0G[+] down 7/9
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠼[0m Container peer0.akademik.medchain.id Stopping                                                 [34m1.4s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠹[0m Container couchdb.klinik             Stopping                                                 [34m0.2s[0m
+[?25h[?25l[10A[0G[+] down 7/9
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠴[0m Container peer0.akademik.medchain.id Stopping                                                 [34m1.5s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠸[0m Container couchdb.klinik             Stopping                                                 [34m0.3s[0m
+[?25h[?25l[10A[0G[+] down 7/9
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [33m⠦[0m Container peer0.akademik.medchain.id Removing                                                 [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠼[0m Container couchdb.klinik             Stopping                                                 [34m0.4s[0m
+[?25h[?25l[10A[0G[+] down 8/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠴[0m Container couchdb.klinik             Stopping                                                 [34m0.5s[0m
+ [33m⠋[0m Container orderer1.medchain.id       Stopping                                                 [34m0.1s[0m
+ [33m⠋[0m Container couchdb.akademik           Stopping                                                 [34m0.1s[0m
+[?25h[?25l[12A[0G[+] down 8/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠦[0m Container couchdb.klinik             Stopping                                                 [34m0.6s[0m
+ [33m⠙[0m Container orderer1.medchain.id       Stopping                                                 [34m0.2s[0m
+ [33m⠙[0m Container couchdb.akademik           Stopping                                                 [34m0.2s[0m
+[?25h[?25l[12A[0G[+] down 8/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠧[0m Container couchdb.klinik             Stopping                                                 [34m0.7s[0m
+ [33m⠹[0m Container orderer1.medchain.id       Stopping                                                 [34m0.3s[0m
+ [33m⠹[0m Container couchdb.akademik           Stopping                                                 [34m0.3s[0m
+[?25h[?25l[12A[0G[+] down 8/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠇[0m Container couchdb.klinik             Stopping                                                 [34m0.8s[0m
+ [33m⠸[0m Container orderer1.medchain.id       Stopping                                                 [34m0.4s[0m
+ [33m⠸[0m Container couchdb.akademik           Stopping                                                 [34m0.4s[0m
+[?25h[?25l[12A[0G[+] down 8/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠏[0m Container couchdb.klinik             Stopping                                                 [34m0.9s[0m
+ [33m⠼[0m Container orderer1.medchain.id       Stopping                                                 [34m0.5s[0m
+ [33m⠼[0m Container couchdb.akademik           Stopping                                                 [34m0.5s[0m
+[?25h[?25l[12A[0G[+] down 8/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠋[0m Container couchdb.klinik             Stopping                                                 [34m1.0s[0m
+ [33m⠴[0m Container orderer1.medchain.id       Stopping                                                 [34m0.6s[0m
+ [33m⠴[0m Container couchdb.akademik           Stopping                                                 [34m0.6s[0m
+[?25h[?25l[12A[0G[+] down 8/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠙[0m Container couchdb.klinik             Stopping                                                 [34m1.1s[0m
+ [33m⠦[0m Container orderer1.medchain.id       Removing                                                 [34m0.7s[0m
+ [33m⠦[0m Container couchdb.akademik           Stopping                                                 [34m0.7s[0m
+[?25h[?25l[12A[0G[+] down 9/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠹[0m Container couchdb.klinik             Stopping                                                 [34m1.2s[0m
+ [32m✔[0m Container orderer1.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠧[0m Container couchdb.akademik           Stopping                                                 [34m0.8s[0m
+[?25h[?25l[12A[0G[+] down 9/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠸[0m Container couchdb.klinik             Stopping                                                 [34m1.3s[0m
+ [32m✔[0m Container orderer1.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠇[0m Container couchdb.akademik           Stopping                                                 [34m0.9s[0m
+[?25h[?25l[12A[0G[+] down 9/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠼[0m Container couchdb.klinik             Stopping                                                 [34m1.4s[0m
+ [32m✔[0m Container orderer1.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠏[0m Container couchdb.akademik           Stopping                                                 [34m1.0s[0m
+[?25h[?25l[12A[0G[+] down 9/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠴[0m Container couchdb.klinik             Stopping                                                 [34m1.5s[0m
+ [32m✔[0m Container orderer1.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠋[0m Container couchdb.akademik           Stopping                                                 [34m1.1s[0m
+[?25h[?25l[12A[0G[+] down 9/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [33m⠦[0m Container couchdb.klinik             Stopping                                                 [34m1.6s[0m
+ [32m✔[0m Container orderer1.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠙[0m Container couchdb.akademik           Stopping                                                 [34m1.2s[0m
+[?25h[?25l[12A[0G[+] down 10/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [32m✔[0m Container couchdb.klinik             [32mRemoved[0m                                                  [34m1.7s[0m
+ [32m✔[0m Container orderer1.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠹[0m Container couchdb.akademik           Stopping                                                 [34m1.3s[0m
+[?25h[?25l[12A[0G[+] down 10/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [32m✔[0m Container couchdb.klinik             [32mRemoved[0m                                                  [34m1.7s[0m
+ [32m✔[0m Container orderer1.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠸[0m Container couchdb.akademik           Stopping                                                 [34m1.4s[0m
+[?25h[?25l[12A[0G[+] down 10/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [32m✔[0m Container couchdb.klinik             [32mRemoved[0m                                                  [34m1.7s[0m
+ [32m✔[0m Container orderer1.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [33m⠼[0m Container couchdb.akademik           Stopping                                                 [34m1.5s[0m
+[?25h[?25l[12A[0G[+] down 11/11
+ [32m✔[0m Container ca.klinik.medchain.id      [32mRemoved[0m                                                  [34m3.5s[0m
+ [32m✔[0m Container cli                        [32mRemoved[0m                                                  [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id    [32mRemoved[0m                                                  [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id       [32mRemoved[0m                                                  [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id     [32mRemoved[0m                                                  [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id [32mRemoved[0m                                                  [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id   [32mRemoved[0m                                                  [34m1.2s[0m
+ [32m✔[0m Container couchdb.klinik             [32mRemoved[0m                                                  [34m1.7s[0m
+ [32m✔[0m Container orderer1.medchain.id       [32mRemoved[0m                                                  [34m0.7s[0m
+ [32m✔[0m Container couchdb.akademik           [32mRemoved[0m                                                  [34m1.6s[0m
+[?25h[?25l[12A[0G[+] down 12/16
+ [32m✔[0m Container ca.klinik.medchain.id            [32mRemoved[0m                                            [34m3.5s[0m
+ [32m✔[0m Container cli                              [32mRemoved[0m                                            [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id          [32mRemoved[0m                                            [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id             [32mRemoved[0m                                            [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id             [32mRemoved[0m                                            [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id           [32mRemoved[0m                                            [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id       [32mRemoved[0m                                            [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id         [32mRemoved[0m                                            [34m1.2s[0m
+ [32m✔[0m Container couchdb.klinik                   [32mRemoved[0m                                            [34m1.7s[0m
+ [32m✔[0m Container orderer1.medchain.id             [32mRemoved[0m                                            [34m0.7s[0m
+ [32m✔[0m Container couchdb.akademik                 [32mRemoved[0m                                            [34m1.6s[0m
+ [33m⠋[0m Volume capstone_peer0.akademik.medchain.id Removing                                           [34m0.0s[0m
+ [33m⠋[0m Network fabric_network                     Removing                                           [34m0.0s[0m
+ ... 3 more                                                                                          
+[?25h[?25l[15A[0G[+] down 13/17
+ [32m✔[0m Container ca.klinik.medchain.id            [32mRemoved[0m                                            [34m3.5s[0m
+ [32m✔[0m Container cli                              [32mRemoved[0m                                            [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id          [32mRemoved[0m                                            [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id             [32mRemoved[0m                                            [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id             [32mRemoved[0m                                            [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id           [32mRemoved[0m                                            [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id       [32mRemoved[0m                                            [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id         [32mRemoved[0m                                            [34m1.2s[0m
+ [32m✔[0m Container couchdb.klinik                   [32mRemoved[0m                                            [34m1.7s[0m
+ [32m✔[0m Container orderer1.medchain.id             [32mRemoved[0m                                            [34m0.7s[0m
+ [32m✔[0m Container couchdb.akademik                 [32mRemoved[0m                                            [34m1.6s[0m
+ [32m✔[0m Volume capstone_peer0.akademik.medchain.id [32mRemoved[0m                                            [34m0.1s[0m
+ [33m⠙[0m Network fabric_network                     Removing                                           [34m0.1s[0m
+ ... 4 more                                                                                          
+[?25h[?25l[15A[0G[+] down 16/17
+ [32m✔[0m Container ca.klinik.medchain.id            [32mRemoved[0m                                            [34m3.5s[0m
+ [32m✔[0m Container cli                              [32mRemoved[0m                                            [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id          [32mRemoved[0m                                            [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id             [32mRemoved[0m                                            [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id             [32mRemoved[0m                                            [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id           [32mRemoved[0m                                            [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id       [32mRemoved[0m                                            [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id         [32mRemoved[0m                                            [34m1.2s[0m
+ [32m✔[0m Container couchdb.klinik                   [32mRemoved[0m                                            [34m1.7s[0m
+ [32m✔[0m Container orderer1.medchain.id             [32mRemoved[0m                                            [34m0.7s[0m
+ [32m✔[0m Container couchdb.akademik                 [32mRemoved[0m                                            [34m1.6s[0m
+ [32m✔[0m Volume capstone_peer0.akademik.medchain.id [32mRemoved[0m                                            [34m0.1s[0m
+ [33m⠹[0m Network fabric_network                     Removing                                           [34m0.2s[0m
+ ... 4 more                                                                                          
+[?25h[?25l[15A[0G[+] down 16/17
+ [32m✔[0m Container ca.klinik.medchain.id            [32mRemoved[0m                                            [34m3.5s[0m
+ [32m✔[0m Container cli                              [32mRemoved[0m                                            [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id          [32mRemoved[0m                                            [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id             [32mRemoved[0m                                            [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id             [32mRemoved[0m                                            [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id           [32mRemoved[0m                                            [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id       [32mRemoved[0m                                            [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id         [32mRemoved[0m                                            [34m1.2s[0m
+ [32m✔[0m Container couchdb.klinik                   [32mRemoved[0m                                            [34m1.7s[0m
+ [32m✔[0m Container orderer1.medchain.id             [32mRemoved[0m                                            [34m0.7s[0m
+ [32m✔[0m Container couchdb.akademik                 [32mRemoved[0m                                            [34m1.6s[0m
+ [32m✔[0m Volume capstone_peer0.akademik.medchain.id [32mRemoved[0m                                            [34m0.1s[0m
+ [33m⠸[0m Network fabric_network                     Removing                                           [34m0.3s[0m
+ ... 4 more                                                                                          
+[?25h[?25l[15A[0G[+] down 17/17
+ [32m✔[0m Container ca.klinik.medchain.id            [32mRemoved[0m                                            [34m3.5s[0m
+ [32m✔[0m Container cli                              [32mRemoved[0m                                            [34m2.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id          [32mRemoved[0m                                            [34m3.3s[0m
+ [32m✔[0m Container orderer3.medchain.id             [32mRemoved[0m                                            [34m2.0s[0m
+ [32m✔[0m Container orderer2.medchain.id             [32mRemoved[0m                                            [34m0.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id           [32mRemoved[0m                                            [34m3.1s[0m
+ [32m✔[0m Container peer0.akademik.medchain.id       [32mRemoved[0m                                            [34m1.6s[0m
+ [32m✔[0m Container peer0.klinik.medchain.id         [32mRemoved[0m                                            [34m1.2s[0m
+ [32m✔[0m Container couchdb.klinik                   [32mRemoved[0m                                            [34m1.7s[0m
+ [32m✔[0m Container orderer1.medchain.id             [32mRemoved[0m                                            [34m0.7s[0m
+ [32m✔[0m Container couchdb.akademik                 [32mRemoved[0m                                            [34m1.6s[0m
+ [32m✔[0m Volume capstone_peer0.akademik.medchain.id [32mRemoved[0m                                            [34m0.1s[0m
+ [32m✔[0m Network fabric_network                     [32mRemoved[0m                                            [34m0.4s[0m
+ ... 4 more                                                                                          
+[?25h[2026-04-21 15:51:46][INFO ] Semua artefak lama dihapus.
+time="2026-04-21T15:51:46+07:00" level=warning msg="/home/shulhan/Capstone/docker-compose.yaml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+[?25l[0G[+] up 0/1
+ [33m⠋[0m Network fabric_network Creating                                                               [34m0.0s[0m
+[?25h[?25l[2A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠋[0m Container ca.klinik.medchain.id   Creating                                                    [34m0.1s[0m
+ [33m⠋[0m Container ca.akademik.medchain.id Creating                                                    [34m0.1s[0m
+ [33m⠋[0m Container ca.orderer.medchain.id  Creating                                                    [34m0.1s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠙[0m Container ca.klinik.medchain.id   Creating                                                    [34m0.2s[0m
+ [33m⠙[0m Container ca.akademik.medchain.id Creating                                                    [34m0.2s[0m
+ [33m⠙[0m Container ca.orderer.medchain.id  Creating                                                    [34m0.2s[0m
+[?25h[?25l[5A[0G[+] up 3/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [32m✔[0m Container ca.klinik.medchain.id   [32mCreated[0m                                                     [34m0.3s[0m
+ [32m✔[0m Container ca.akademik.medchain.id [32mCreated[0m                                                     [34m0.2s[0m
+ [33m⠹[0m Container ca.orderer.medchain.id  Creating                                                    [34m0.3s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠹[0m Container ca.klinik.medchain.id   Starting                                                    [34m0.4s[0m
+ [33m⠹[0m Container ca.akademik.medchain.id Starting                                                    [34m0.4s[0m
+ [33m⠸[0m Container ca.orderer.medchain.id  Starting                                                    [34m0.4s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠸[0m Container ca.klinik.medchain.id   Starting                                                    [34m0.5s[0m
+ [33m⠸[0m Container ca.akademik.medchain.id Starting                                                    [34m0.5s[0m
+ [33m⠼[0m Container ca.orderer.medchain.id  Starting                                                    [34m0.5s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠼[0m Container ca.klinik.medchain.id   Starting                                                    [34m0.6s[0m
+ [33m⠼[0m Container ca.akademik.medchain.id Starting                                                    [34m0.6s[0m
+ [33m⠴[0m Container ca.orderer.medchain.id  Starting                                                    [34m0.6s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠴[0m Container ca.klinik.medchain.id   Starting                                                    [34m0.7s[0m
+ [33m⠴[0m Container ca.akademik.medchain.id Starting                                                    [34m0.7s[0m
+ [33m⠦[0m Container ca.orderer.medchain.id  Starting                                                    [34m0.7s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠦[0m Container ca.klinik.medchain.id   Starting                                                    [34m0.8s[0m
+ [33m⠦[0m Container ca.akademik.medchain.id Starting                                                    [34m0.8s[0m
+ [33m⠧[0m Container ca.orderer.medchain.id  Starting                                                    [34m0.8s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠧[0m Container ca.klinik.medchain.id   Starting                                                    [34m0.9s[0m
+ [33m⠧[0m Container ca.akademik.medchain.id Starting                                                    [34m0.9s[0m
+ [33m⠇[0m Container ca.orderer.medchain.id  Starting                                                    [34m0.9s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠇[0m Container ca.klinik.medchain.id   Starting                                                    [34m1.0s[0m
+ [33m⠇[0m Container ca.akademik.medchain.id Starting                                                    [34m1.0s[0m
+ [33m⠏[0m Container ca.orderer.medchain.id  Starting                                                    [34m1.0s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠏[0m Container ca.klinik.medchain.id   Starting                                                    [34m1.1s[0m
+ [33m⠏[0m Container ca.akademik.medchain.id Starting                                                    [34m1.1s[0m
+ [33m⠋[0m Container ca.orderer.medchain.id  Starting                                                    [34m1.1s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠋[0m Container ca.klinik.medchain.id   Starting                                                    [34m1.2s[0m
+ [33m⠋[0m Container ca.akademik.medchain.id Starting                                                    [34m1.2s[0m
+ [33m⠙[0m Container ca.orderer.medchain.id  Starting                                                    [34m1.2s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠙[0m Container ca.klinik.medchain.id   Starting                                                    [34m1.3s[0m
+ [33m⠙[0m Container ca.akademik.medchain.id Starting                                                    [34m1.3s[0m
+ [33m⠹[0m Container ca.orderer.medchain.id  Starting                                                    [34m1.3s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠹[0m Container ca.klinik.medchain.id   Starting                                                    [34m1.4s[0m
+ [33m⠹[0m Container ca.akademik.medchain.id Starting                                                    [34m1.4s[0m
+ [33m⠸[0m Container ca.orderer.medchain.id  Starting                                                    [34m1.4s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠸[0m Container ca.klinik.medchain.id   Starting                                                    [34m1.5s[0m
+ [33m⠸[0m Container ca.akademik.medchain.id Starting                                                    [34m1.5s[0m
+ [33m⠼[0m Container ca.orderer.medchain.id  Starting                                                    [34m1.5s[0m
+[?25h[?25l[5A[0G[+] up 2/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠼[0m Container ca.klinik.medchain.id   Starting                                                    [34m1.6s[0m
+ [33m⠼[0m Container ca.akademik.medchain.id Starting                                                    [34m1.6s[0m
+ [32m✔[0m Container ca.orderer.medchain.id  [32mStarted[0m                                                     [34m1.5s[0m
+[?25h[?25l[5A[0G[+] up 2/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [33m⠴[0m Container ca.klinik.medchain.id   Starting                                                    [34m1.7s[0m
+ [33m⠴[0m Container ca.akademik.medchain.id Starting                                                    [34m1.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id  [32mStarted[0m                                                     [34m1.5s[0m
+[?25h[?25l[5A[0G[+] up 4/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                     [34m0.0s[0m
+ [32m✔[0m Container ca.klinik.medchain.id   [32mStarted[0m                                                     [34m1.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id [32mStarted[0m                                                     [34m1.7s[0m
+ [32m✔[0m Container ca.orderer.medchain.id  [32mStarted[0m                                                     [34m1.5s[0m
+[?25h

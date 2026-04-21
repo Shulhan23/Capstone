@@ -6,7 +6,7 @@ CHAINCODE_SEQUENCE="5"
 
 CHANNEL_NAME="medchannel"
 CHAINCODE_NAME="medical"
-DOMAIN="example.com"
+DOMAIN="medchain.id"
 
 GREEN='\033[0;32m'; RED='\033[0;31m'; NC='\033[0m'
 log()   { echo -e "${GREEN}[INFO]${NC} $1"; }
@@ -14,7 +14,7 @@ error() { echo -e "${RED}[ERROR]${NC} $1"; exit 1; }
 
 CLI_CRYPTO="/etc/hyperledger/fabric/crypto"
 CLI_CC="/etc/hyperledger/fabric/chaincode"
-ORDERER_CA="${CLI_CRYPTO}/ordererOrganizations/${DOMAIN}/orderers/orderer.${DOMAIN}/msp/tlscacerts/tlsca.${DOMAIN}-cert.pem"
+ORDERER_CA="${CLI_CRYPTO}/ordererOrganizations/${DOMAIN}/orderers/orderer1.${DOMAIN}/msp/tlscacerts/tlsca.${DOMAIN}-cert.pem"
 PEER0_KLINIK_CA="${CLI_CRYPTO}/peerOrganizations/klinik.${DOMAIN}/peers/peer0.klinik.${DOMAIN}/tls/ca.crt"
 PEER0_AKADEMIK_CA="${CLI_CRYPTO}/peerOrganizations/akademik.${DOMAIN}/peers/peer0.akademik.${DOMAIN}/tls/ca.crt"
 
@@ -45,8 +45,8 @@ log "Package ID: $CC_PACKAGE_ID"
 
 log "Step 4/6: Approve KlinikMSP..."
 docker exec cli peer lifecycle chaincode approveformyorg \
-    -o orderer.${DOMAIN}:7050 \
-    --ordererTLSHostnameOverride orderer.${DOMAIN} \
+    -o orderer1.${DOMAIN}:7050 \
+    --ordererTLSHostnameOverride orderer1.${DOMAIN} \
     --channelID ${CHANNEL_NAME} \
     --name ${CHAINCODE_NAME} \
     --version ${CHAINCODE_VERSION} \
@@ -61,8 +61,8 @@ docker exec \
     -e CORE_PEER_MSPCONFIGPATH=${CLI_CRYPTO}/peerOrganizations/akademik.${DOMAIN}/users/Admin@akademik.${DOMAIN}/msp \
     -e CORE_PEER_TLS_ROOTCERT_FILE=${PEER0_AKADEMIK_CA} \
     cli peer lifecycle chaincode approveformyorg \
-    -o orderer.${DOMAIN}:7050 \
-    --ordererTLSHostnameOverride orderer.${DOMAIN} \
+    -o orderer1.${DOMAIN}:7050 \
+    --ordererTLSHostnameOverride orderer1.${DOMAIN} \
     --channelID ${CHANNEL_NAME} \
     --name ${CHAINCODE_NAME} \
     --version ${CHAINCODE_VERSION} \
@@ -87,8 +87,8 @@ AKADEMIK_READY=$(echo "$READINESS" | grep -o '"AkademikMSP": true' | wc -l)
 
 log "Step 6/6: Commit..."
 docker exec cli peer lifecycle chaincode commit \
-    -o orderer.${DOMAIN}:7050 \
-    --ordererTLSHostnameOverride orderer.${DOMAIN} \
+    -o orderer1.${DOMAIN}:7050 \
+    --ordererTLSHostnameOverride orderer1.${DOMAIN} \
     --channelID ${CHANNEL_NAME} \
     --name ${CHAINCODE_NAME} \
     --version ${CHAINCODE_VERSION} \

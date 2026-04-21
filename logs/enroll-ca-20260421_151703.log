@@ -1,0 +1,9 @@
+[2026-04-21 15:17:03][INFO ] Memulai enrollment semua organisasi...
+[2026-04-21 15:17:03][INFO ] Log: /home/shulhan/Capstone/logs/enroll-ca-20260421_151703.log
+2026/04/21 15:17:03 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/fabric-ca-client-config.yaml
+2026/04/21 15:17:03 [INFO] TLS Enabled
+2026/04/21 15:17:03 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/21 15:17:03 [INFO] encoded CSR
+Error: POST failure of request: POST https://ca.orderer.medchain.id:7054/enroll
+{"hosts":["DESKTOP-0TJRH60"],"certificate_request":"-----BEGIN CERTIFICATE REQUEST-----\nMIIBRDCB7AIBADBdMQswCQYDVQQGEwJVUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xp\nbmExFDASBgNVBAoTC0h5cGVybGVkZ2VyMQ8wDQYDVQQLEwZGYWJyaWMxDjAMBgNV\nBAMTBWFkbWluMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEIELTHVnsW1HrrJq/\nwKVaJFy1fAKchmKqp6pGBdn4jUdU7pF7vCjPn81s614+LPj4Pl/Psqnhm7wCJQuG\nUxf2wKAtMCsGCSqGSIb3DQEJDjEeMBwwGgYDVR0RBBMwEYIPREVTS1RPUC0wVEpS\nSDYwMAoGCCqGSM49BAMCA0cAMEQCIG+VGKIWRwpecd1VgeisQU1OxWB3dzZPSZA5\nJFUBGXnCAiAR98+yy3c1fvgUgql+lDgrw0PNtYS6+4iNWgQq6FZkWA==\n-----END CERTIFICATE REQUEST-----\n","profile":"","crl_override":"","label":"","NotBefore":"0001-01-01T00:00:00Z","NotAfter":"0001-01-01T00:00:00Z","ReturnPrecert":false,"CAName":"ca-orderer"}: Post "https://ca.orderer.medchain.id:7054/enroll": dial tcp: lookup ca.orderer.medchain.id on 172.25.0.1:53: no such host
+[2026-04-21 15:17:03][ERROR] Enroll gagal. Cek log: /home/shulhan/Capstone/logs/enroll-ca-20260421_151703.log

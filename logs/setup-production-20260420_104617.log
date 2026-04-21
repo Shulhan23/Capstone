@@ -1,0 +1,114 @@
+[2026-04-20 10:46:17][INFO ] Docker   : 29.4.0
+[2026-04-20 10:46:18][INFO ] Configtxgen: configtxgen:
+[2026-04-20 10:46:18][INFO ] CA Client: v1.5.7
+time="2026-04-20T10:46:18+07:00" level=warning msg="/home/shulhan/Capstone/docker-compose.yaml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+[2026-04-20 10:46:22][INFO ] Semua artefak lama dihapus.
+time="2026-04-20T10:46:22+07:00" level=warning msg="/home/shulhan/Capstone/docker-compose.yaml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+[?25l[0G[+] up 0/1
+ [33m⠋[0m Network fabric_network Creating                                                                                                                        [34m0.0s[0m
+[?25h[?25l[2A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠋[0m Container ca.klinik.medchain.id   Creating                                                                                                             [34m0.0s[0m
+ [33m⠋[0m Container ca.orderer.medchain.id  Creating                                                                                                             [34m0.0s[0m
+ [33m⠋[0m Container ca.akademik.medchain.id Creating                                                                                                             [34m0.0s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠙[0m Container ca.klinik.medchain.id   Creating                                                                                                             [34m0.1s[0m
+ [33m⠙[0m Container ca.orderer.medchain.id  Creating                                                                                                             [34m0.1s[0m
+ [33m⠙[0m Container ca.akademik.medchain.id Creating                                                                                                             [34m0.1s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠹[0m Container ca.klinik.medchain.id   Creating                                                                                                             [34m0.2s[0m
+ [33m⠹[0m Container ca.orderer.medchain.id  Creating                                                                                                             [34m0.2s[0m
+ [33m⠹[0m Container ca.akademik.medchain.id Creating                                                                                                             [34m0.2s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠸[0m Container ca.klinik.medchain.id   Creating                                                                                                             [34m0.3s[0m
+ [33m⠸[0m Container ca.orderer.medchain.id  Creating                                                                                                             [34m0.3s[0m
+ [33m⠸[0m Container ca.akademik.medchain.id Creating                                                                                                             [34m0.3s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠼[0m Container ca.klinik.medchain.id   Creating                                                                                                             [34m0.4s[0m
+ [33m⠼[0m Container ca.orderer.medchain.id  Creating                                                                                                             [34m0.4s[0m
+ [33m⠼[0m Container ca.akademik.medchain.id Creating                                                                                                             [34m0.4s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠴[0m Container ca.klinik.medchain.id   Creating                                                                                                             [34m0.5s[0m
+ [33m⠴[0m Container ca.orderer.medchain.id  Creating                                                                                                             [34m0.5s[0m
+ [33m⠴[0m Container ca.akademik.medchain.id Creating                                                                                                             [34m0.5s[0m
+[?25h[?25l[5A[0G[+] up 3/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [32m✔[0m Container ca.klinik.medchain.id   [32mCreated[0m                                                                                                              [34m0.6s[0m
+ [32m✔[0m Container ca.orderer.medchain.id  [32mCreated[0m                                                                                                              [34m0.6s[0m
+ [33m⠦[0m Container ca.akademik.medchain.id Creating                                                                                                             [34m0.6s[0m
+[?25h[?25l[5A[0G[+] up 4/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [32m✔[0m Container ca.klinik.medchain.id   [32mCreated[0m                                                                                                              [34m0.6s[0m
+ [32m✔[0m Container ca.orderer.medchain.id  [32mCreated[0m                                                                                                              [34m0.6s[0m
+ [32m✔[0m Container ca.akademik.medchain.id [32mCreated[0m                                                                                                              [34m0.6s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠦[0m Container ca.klinik.medchain.id   Starting                                                                                                             [34m0.8s[0m
+ [33m⠦[0m Container ca.orderer.medchain.id  Starting                                                                                                             [34m0.8s[0m
+ [33m⠧[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m0.8s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠧[0m Container ca.klinik.medchain.id   Starting                                                                                                             [34m0.9s[0m
+ [33m⠧[0m Container ca.orderer.medchain.id  Starting                                                                                                             [34m0.9s[0m
+ [33m⠇[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m0.9s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠇[0m Container ca.klinik.medchain.id   Starting                                                                                                             [34m1.0s[0m
+ [33m⠇[0m Container ca.orderer.medchain.id  Starting                                                                                                             [34m1.0s[0m
+ [33m⠏[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m1.0s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠏[0m Container ca.klinik.medchain.id   Starting                                                                                                             [34m1.1s[0m
+ [33m⠏[0m Container ca.orderer.medchain.id  Starting                                                                                                             [34m1.1s[0m
+ [33m⠋[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m1.1s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠋[0m Container ca.klinik.medchain.id   Starting                                                                                                             [34m1.2s[0m
+ [33m⠋[0m Container ca.orderer.medchain.id  Starting                                                                                                             [34m1.2s[0m
+ [33m⠙[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m1.2s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠙[0m Container ca.klinik.medchain.id   Starting                                                                                                             [34m1.3s[0m
+ [33m⠙[0m Container ca.orderer.medchain.id  Starting                                                                                                             [34m1.3s[0m
+ [33m⠹[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m1.3s[0m
+[?25h[?25l[5A[0G[+] up 1/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [33m⠹[0m Container ca.klinik.medchain.id   Starting                                                                                                             [34m1.5s[0m
+ [33m⠹[0m Container ca.orderer.medchain.id  Starting                                                                                                             [34m1.5s[0m
+ [33m⠸[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m1.5s[0m
+[?25h[?25l[5A[0G[+] up 2/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [32m✔[0m Container ca.klinik.medchain.id   [32mStarted[0m                                                                                                              [34m1.5s[0m
+ [33m⠸[0m Container ca.orderer.medchain.id  Starting                                                                                                             [34m1.5s[0m
+ [33m⠼[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m1.5s[0m
+[?25h[?25l[5A[0G[+] up 2/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [32m✔[0m Container ca.klinik.medchain.id   [32mStarted[0m                                                                                                              [34m1.5s[0m
+ [33m⠼[0m Container ca.orderer.medchain.id  Starting                                                                                                             [34m1.6s[0m
+ [33m⠴[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m1.6s[0m
+[?25h[?25l[5A[0G[+] up 3/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [32m✔[0m Container ca.klinik.medchain.id   [32mStarted[0m                                                                                                              [34m1.5s[0m
+ [32m✔[0m Container ca.orderer.medchain.id  [32mStarted[0m                                                                                                              [34m1.7s[0m
+ [33m⠦[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m1.7s[0m
+[?25h[?25l[5A[0G[+] up 3/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [32m✔[0m Container ca.klinik.medchain.id   [32mStarted[0m                                                                                                              [34m1.5s[0m
+ [32m✔[0m Container ca.orderer.medchain.id  [32mStarted[0m                                                                                                              [34m1.7s[0m
+ [33m⠧[0m Container ca.akademik.medchain.id Starting                                                                                                             [34m1.8s[0m
+[?25h[?25l[5A[0G[+] up 4/4
+ [32m✔[0m Network fabric_network            [32mCreated[0m                                                                                                              [34m0.1s[0m
+ [32m✔[0m Container ca.klinik.medchain.id   [32mStarted[0m                                                                                                              [34m1.5s[0m
+ [32m✔[0m Container ca.orderer.medchain.id  [32mStarted[0m                                                                                                              [34m1.7s[0m
+ [32m✔[0m Container ca.akademik.medchain.id [32mStarted[0m                                                                                                              [34m1.9s[0m
+[?25h[2026-04-20 10:46:26][WARN ]   Hostname ca.orderer.medchain.id tidak resolve, pakai localhost:7054
+[2026-04-20 10:46:26][WARN ]   Hostname ca.klinik.medchain.id tidak resolve, pakai localhost:8054
+[2026-04-20 10:46:27][WARN ]   Hostname ca.akademik.medchain.id tidak resolve, pakai localhost:9054
+[2026-04-20 10:46:27][ERROR] enroll-ca.sh gagal.
+[2026-04-20 10:46:27][WARN ] Menjalankan rollback...
+[2026-04-20 10:46:29][WARN ] Rollback selesai.

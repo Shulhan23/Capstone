@@ -1,0 +1,115 @@
+[2026-04-20 10:51:56][INFO ] Memulai setup channel...
+[2026-04-20 10:51:56][INFO ] Log: /home/shulhan/Capstone/logs/setup-channel-20260420_105156.log
+[2026-04-20 10:51:56][INFO ]   Genesis block...
+[34m2026-04-20 10:51:56.855 WIB 0001 INFO[0m [common.tools.configtxgen] [34;1mmain[0m -> Loading configuration
+[34m2026-04-20 10:51:56.867 WIB 0002 INFO[0m [common.tools.configtxgen.localconfig] [34;1mcompleteInitialization[0m -> orderer type: etcdraft
+[34m2026-04-20 10:51:56.867 WIB 0003 INFO[0m [common.tools.configtxgen.localconfig] [34;1mLoad[0m -> Loaded configuration: /home/shulhan/Capstone/configtx.yaml
+[34m2026-04-20 10:51:56.868 WIB 0004 INFO[0m [common.tools.configtxgen] [34;1mdoOutputBlock[0m -> Generating genesis block
+[34m2026-04-20 10:51:56.868 WIB 0005 INFO[0m [common.tools.configtxgen] [34;1mdoOutputBlock[0m -> Creating system channel genesis block
+[34m2026-04-20 10:51:56.869 WIB 0006 INFO[0m [common.tools.configtxgen] [34;1mdoOutputBlock[0m -> Writing genesis block
+[2026-04-20 10:51:56][INFO ]   Channel transaction...
+[34m2026-04-20 10:51:56.905 WIB 0001 INFO[0m [common.tools.configtxgen] [34;1mmain[0m -> Loading configuration
+[34m2026-04-20 10:51:56.917 WIB 0002 INFO[0m [common.tools.configtxgen.localconfig] [34;1mLoad[0m -> Loaded configuration: /home/shulhan/Capstone/configtx.yaml
+[34m2026-04-20 10:51:56.917 WIB 0003 INFO[0m [common.tools.configtxgen] [34;1mdoOutputChannelCreateTx[0m -> Generating new channel configtx
+[34m2026-04-20 10:51:56.920 WIB 0004 INFO[0m [common.tools.configtxgen] [34;1mdoOutputChannelCreateTx[0m -> Writing new channel tx
+[2026-04-20 10:51:56][INFO ]   Anchor peer KlinikMSP...
+[34m2026-04-20 10:51:56.955 WIB 0001 INFO[0m [common.tools.configtxgen] [34;1mmain[0m -> Loading configuration
+[34m2026-04-20 10:51:56.965 WIB 0002 INFO[0m [common.tools.configtxgen.localconfig] [34;1mLoad[0m -> Loaded configuration: /home/shulhan/Capstone/configtx.yaml
+[34m2026-04-20 10:51:56.965 WIB 0003 INFO[0m [common.tools.configtxgen] [34;1mdoOutputAnchorPeersUpdate[0m -> Generating anchor peer update
+[34m2026-04-20 10:51:56.966 WIB 0004 INFO[0m [common.tools.configtxgen] [34;1mdoOutputAnchorPeersUpdate[0m -> Writing anchor peer update
+[2026-04-20 10:51:56][INFO ]   Anchor peer AkademikMSP...
+[34m2026-04-20 10:51:57.001 WIB 0001 INFO[0m [common.tools.configtxgen] [34;1mmain[0m -> Loading configuration
+[34m2026-04-20 10:51:57.013 WIB 0002 INFO[0m [common.tools.configtxgen.localconfig] [34;1mLoad[0m -> Loaded configuration: /home/shulhan/Capstone/configtx.yaml
+[34m2026-04-20 10:51:57.014 WIB 0003 INFO[0m [common.tools.configtxgen] [34;1mdoOutputAnchorPeersUpdate[0m -> Generating anchor peer update
+[34m2026-04-20 10:51:57.016 WIB 0004 INFO[0m [common.tools.configtxgen] [34;1mdoOutputAnchorPeersUpdate[0m -> Writing anchor peer update
+time="2026-04-20T10:51:57+07:00" level=warning msg="/home/shulhan/Capstone/docker-compose.yaml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Volume capstone_orderer1.medchain.id Creating 
+ Volume capstone_orderer1.medchain.id Created 
+ Volume capstone_orderer3.medchain.id Creating 
+ Volume capstone_orderer3.medchain.id Created 
+ Volume capstone_peer0.klinik.medchain.id Creating 
+ Volume capstone_peer0.klinik.medchain.id Created 
+ Volume capstone_orderer2.medchain.id Creating 
+ Volume capstone_orderer2.medchain.id Created 
+ Volume capstone_peer0.akademik.medchain.id Creating 
+ Volume capstone_peer0.akademik.medchain.id Created 
+ Container orderer1.medchain.id Creating 
+ Container orderer2.medchain.id Creating 
+ Container couchdb.klinik Creating 
+ Container orderer3.medchain.id Creating 
+ Container couchdb.akademik Creating 
+ Container couchdb.klinik Created 
+ Container orderer2.medchain.id Created 
+ Container orderer1.medchain.id Created 
+ Container peer0.klinik.medchain.id Creating 
+ Container couchdb.akademik Created 
+ Container peer0.akademik.medchain.id Creating 
+ Container orderer3.medchain.id Created 
+ Container peer0.klinik.medchain.id Created 
+ Container peer0.akademik.medchain.id Created 
+ Container cli Creating 
+ Container cli Created 
+ Container orderer1.medchain.id Starting 
+ Container orderer2.medchain.id Starting 
+ Container couchdb.akademik Starting 
+ Container orderer3.medchain.id Starting 
+ Container couchdb.klinik Starting 
+ Container couchdb.klinik Started 
+ Container couchdb.akademik Started 
+ Container orderer2.medchain.id Started 
+ Container orderer3.medchain.id Started 
+ Container orderer1.medchain.id Started 
+ Container orderer1.medchain.id Waiting 
+ Container couchdb.akademik Waiting 
+ Container couchdb.klinik Waiting 
+ Container orderer1.medchain.id Waiting 
+ Container orderer1.medchain.id Healthy 
+ Container orderer1.medchain.id Healthy 
+ Container couchdb.akademik Healthy 
+ Container peer0.akademik.medchain.id Starting 
+ Container couchdb.klinik Healthy 
+ Container peer0.klinik.medchain.id Starting 
+ Container peer0.akademik.medchain.id Started 
+ Container peer0.klinik.medchain.id Started 
+ Container peer0.akademik.medchain.id Waiting 
+ Container orderer1.medchain.id Waiting 
+ Container peer0.klinik.medchain.id Waiting 
+ Container orderer1.medchain.id Healthy 
+ Container peer0.klinik.medchain.id Healthy 
+ Container peer0.akademik.medchain.id Healthy 
+ Container cli Starting 
+ Container cli Started 
+[34m2026-04-20 03:52:21.409 UTC 0001 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:21.435 UTC 0002 INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{NOT_FOUND}
+[34m2026-04-20 03:52:21.438 UTC 0003 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:21.640 UTC 0004 INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
+[34m2026-04-20 03:52:21.646 UTC 0005 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:21.849 UTC 0006 INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
+[34m2026-04-20 03:52:21.861 UTC 0007 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:22.065 UTC 0008 INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
+[34m2026-04-20 03:52:22.075 UTC 0009 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:22.277 UTC 000a INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
+[34m2026-04-20 03:52:22.283 UTC 000b INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:22.485 UTC 000c INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
+[34m2026-04-20 03:52:22.494 UTC 000d INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:22.697 UTC 000e INFO[0m [cli.common] [34;1mreadBlock[0m -> Received block: 0
+[2026-04-20 10:52:22][INFO ] Channel 'medchannel' berhasil dibuat.
+[2026-04-20 10:52:22][INFO ]   peer0.klinik...
+[34m2026-04-20 03:52:22.948 UTC 0001 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:23.375 UTC 0002 INFO[0m [channelCmd] [34;1mexecuteJoin[0m -> Successfully submitted proposal to join channel
+[2026-04-20 10:52:23][INFO ]   peer0.klinik ✓
+[2026-04-20 10:52:23][INFO ]   peer0.akademik...
+[34m2026-04-20 03:52:23.690 UTC 0001 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:24.475 UTC 0002 INFO[0m [channelCmd] [34;1mexecuteJoin[0m -> Successfully submitted proposal to join channel
+[2026-04-20 10:52:24][INFO ]   peer0.akademik ✓
+[34m2026-04-20 03:52:24.992 UTC 0001 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:25.043 UTC 0002 INFO[0m [channelCmd] [34;1mupdate[0m -> Successfully submitted channel update
+[2026-04-20 10:52:25][INFO ]   KlinikMSP ✓
+[34m2026-04-20 03:52:25.827 UTC 0001 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-20 03:52:25.888 UTC 0002 INFO[0m [channelCmd] [34;1mupdate[0m -> Successfully submitted channel update
+[2026-04-20 10:52:25][INFO ]   AkademikMSP ✓
+[2026-04-20 10:52:25][INFO ]   Verifikasi channel list:
+[34m2026-04-20 03:52:26.299 UTC 0001 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[2026-04-20 10:52:26][INFO ] Channel setup selesai!
+[2026-04-20 10:52:26][INFO ] Channel : medchannel
+[2026-04-20 10:52:26][INFO ] Langkah selanjutnya: bash scripts/deploy-chaincode.sh

@@ -5,44 +5,63 @@ const { Contract } = require('fabric-contract-api');
 class MedicalContract extends Contract {
 
     constructor() {
-        // Namespace contract — pola resmi dari fabric-chaincode-node
         super('MedicalContract');
     }
 
-    // =========================================================
-    // InitLedger — inisialisasi ledger saat pertama deploy
-    // Dipanggil otomatis saat chaincode di-instantiate
-    // =========================================================
-    async InitLedger(ctx) {
-        console.info('============= MedicalContract: InitLedger ===========');
-        // Tidak ada data awal — ledger dimulai kosong
-        // Surat sakit dibuat saat dokter menerbitkannya lewat IssueSuratSakit
-        console.info('Ledger berhasil diinisialisasi');
+    // ===================== HELPER =====================
+
+    _getTxTimestamp(ctx) {
+        const ts = ctx.stub.getTxTimestamp();
+        const seconds = ts.seconds?.low || ts.seconds || 0;
+        return new Date(seconds * 1000).toISOString();
+    }
+
+    async _putState(ctx, key, data) {
+        await ctx.stub.putState(key, Buffer.from(JSON.stringify(data)));
+    }
+
+    _emit(ctx, eventName, payload) {
+        ctx.stub.setEvent(eventName, Buffer.from(JSON.stringify(payload)));
+    }
+
+    _validateHash(hash) {
+        if (!/^[a-f0-9]{64}$/.test(hash)) {
+            throw new Error('Hash tidak valid (harus SHA-256)');
+        }
+    }
+
+    _requireMSP(ctx, allowedMSP) {
+        const msp = ctx.clientIdentity.getMSPID();
+        if (!allowedMSP.includes(msp)) {
+            throw new Error(`Akses ditolak untuk MSP: ${msp}`);
+        }
+    }
+
+    _validateRequired(...fields) {
+        for (const f of fields) {
+            if (!f) throw new Error('Input tidak lengkap');
+        }
     }
 
     // =========================================================
-    // IssueSuratSakit — terbitkan surat sakit baru ke ledger
-    //
-    // Dipanggil oleh: Backend Klinik (via Fabric Gateway SDK)
-    // Args:
-    //   id           — ID unik surat sakit (contoh: "SS-001")
-    //   hash         — SHA-256 dari konten surat (dibuat di backend)
-    //   dokterID     — ID dokter penerbit (referensi ke MySQL)
-    //   klinikID     — ID klinik penerbit (referensi ke MySQL)
-    //   pasienID     — ID pasien (referensi ke MySQL)
-    //   tanggalTerbit — tanggal penerbitan (format: "2026-04-10")
+    async InitLedger(ctx) {
+        console.info('[InitLedger] Ledger diinisialisasi');
+    }
+
     // =========================================================
     async IssueSuratSakit(ctx, id, hash, dokterID, klinikID, pasienID, tanggalTerbit) {
 
-        // Cek apakah surat dengan ID ini sudah ada
+        this._requireMSP(ctx, ['KlinikMSP']);
+        this._validateRequired(id, hash, dokterID, klinikID, pasienID, tanggalTerbit);
+        this._validateHash(hash);
+
         const exists = await this.SuratSakitExists(ctx, id);
         if (exists) {
-            throw new Error(`Surat sakit dengan ID ${id} sudah ada di ledger`);
+            throw new Error(`[IssueSuratSakit] ID ${id} sudah ada`);
         }
 
-        // Buat objek surat sakit
-        // Pola dari asset-transfer-basic: data disimpan sebagai JSON string
         const suratSakit = {
+            docType: 'surat_sakit',
             id,
             hash,
             dokterID,
@@ -51,36 +70,29 @@ class MedicalContract extends Contract {
             tanggalTerbit,
             status: 'ACTIVE',
             revokeReason: '',
-            // Timestamp dari blockchain — bukan dari input user
-            // Pola resmi: gunakan ctx.stub.getTxTimestamp()
-            createdAt: new Date(ctx.stub.getTxTimestamp().seconds.low * 1000).toISOString(),
+            createdAt: this._getTxTimestamp(ctx),
         };
 
-        // Simpan ke world state (ledger)
-        // Pola resmi: PutState(key, Buffer.from(JSON.stringify(data)))
-        await ctx.stub.putState(id, Buffer.from(JSON.stringify(suratSakit)));
+        await this._putState(ctx, id, suratSakit);
 
-        // Emit event — pola resmi dari fabric-samples/asset-transfer-events
-        ctx.stub.setEvent('IssueSuratSakit', Buffer.from(JSON.stringify({ id, klinikID, status: 'ACTIVE' })));
+        this._emit(ctx, 'IssueSuratSakit', {
+            id,
+            klinikID,
+            status: 'ACTIVE'
+        });
 
-        console.info(`Surat sakit ${id} berhasil diterbitkan`);
+        console.info(`[IssueSuratSakit] SUCCESS ID=${id}`);
         return JSON.stringify(suratSakit);
     }
 
     // =========================================================
-    // VerifySuratSakit — verifikasi keaslian surat sakit
-    //
-    // Dipanggil oleh: Backend Akademik atau Klinik
-    // Args:
-    //   id   — ID surat sakit yang akan diverifikasi
-    //   hash — hash yang akan dicocokkan (dari QR code / form)
-    // Returns: { valid: boolean, status: string, data: object }
-    // =========================================================
     async VerifySuratSakit(ctx, id, hash) {
+
+        this._validateRequired(id, hash);
+        this._validateHash(hash);
 
         const suratSakit = await this.GetSuratSakit(ctx, id);
 
-        // Surat sudah dicabut
         if (suratSakit.status === 'REVOKED') {
             return JSON.stringify({
                 valid: false,
@@ -90,7 +102,6 @@ class MedicalContract extends Contract {
             });
         }
 
-        // Cocokkan hash
         const hashMatch = suratSakit.hash === hash;
 
         return JSON.stringify({
@@ -101,138 +112,113 @@ class MedicalContract extends Contract {
     }
 
     // =========================================================
-    // RevokeSuratSakit — cabut surat sakit yang sudah terbit
-    //
-    // Dipanggil oleh: Backend Klinik saja
-    // Args:
-    //   id     — ID surat sakit yang akan dicabut
-    //   reason — alasan pencabutan
-    // =========================================================
     async RevokeSuratSakit(ctx, id, reason) {
+
+        this._requireMSP(ctx, ['KlinikMSP']);
+        this._validateRequired(id, reason);
 
         const suratSakit = await this.GetSuratSakit(ctx, id);
 
         if (suratSakit.status === 'REVOKED') {
-            throw new Error(`Surat sakit ${id} sudah dalam status REVOKED`);
+            throw new Error(`[RevokeSuratSakit] ID ${id} sudah REVOKED`);
         }
 
-        // Update status
         suratSakit.status = 'REVOKED';
         suratSakit.revokeReason = reason;
-        suratSakit.revokedAt = new Date(ctx.stub.getTxTimestamp().seconds.low * 1000).toISOString();
+        suratSakit.revokedAt = this._getTxTimestamp(ctx);
 
-        await ctx.stub.putState(id, Buffer.from(JSON.stringify(suratSakit)));
+        await this._putState(ctx, id, suratSakit);
 
-        // Emit event
-        ctx.stub.setEvent('RevokeSuratSakit', Buffer.from(JSON.stringify({ id, reason, status: 'REVOKED' })));
+        this._emit(ctx, 'RevokeSuratSakit', {
+            id,
+            reason,
+            status: 'REVOKED'
+        });
 
-        console.info(`Surat sakit ${id} berhasil dicabut`);
+        console.info(`[RevokeSuratSakit] SUCCESS ID=${id}`);
         return JSON.stringify(suratSakit);
     }
 
     // =========================================================
-    // GetSuratSakit — ambil data surat dari ledger
-    //
-    // Dipanggil oleh: Backend Klinik & Akademik
-    // Args:
-    //   id — ID surat sakit
-    // =========================================================
     async GetSuratSakit(ctx, id) {
 
-        // Pola resmi: GetState(key) mengembalikan Buffer atau null
+        this._validateRequired(id);
+
         const suratJSON = await ctx.stub.getState(id);
 
         if (!suratJSON || suratJSON.length === 0) {
-            throw new Error(`Surat sakit dengan ID ${id} tidak ditemukan di ledger`);
+            throw new Error(`[GetSuratSakit] ID ${id} tidak ditemukan`);
         }
 
         return JSON.parse(suratJSON.toString());
     }
 
     // =========================================================
-    // GetHistoryById — riwayat perubahan surat di ledger
-    //
-    // Berguna untuk audit trail — siapa mengubah apa dan kapan
-    // Args:
-    //   id — ID surat sakit
-    // =========================================================
     async GetHistoryById(ctx, id) {
 
-        // Pola resmi: getHistoryForKey dari fabric-samples/asset-transfer-ledger-queries
-        const resultsIterator = await ctx.stub.getHistoryForKey(id);
+        this._validateRequired(id);
+
+        const iterator = await ctx.stub.getHistoryForKey(id);
         const results = [];
 
-        let res = await resultsIterator.next();
+        let res = await iterator.next();
         while (!res.done) {
             const record = {
                 txId: res.value.txId,
                 timestamp: (() => {
                     try {
-                        const ts = hasil.value.timestamp;
+                        const ts = res.value.timestamp;
                         if (!ts) return null;
-                        // Fabric bisa return Long object atau number biasa
-                        const seconds = ts.seconds
-                            ? (typeof ts.seconds === 'object' ? ts.seconds.toNumber() : ts.seconds)
-                            : ts.low || 0;
+                        const seconds = ts.seconds?.low || ts.seconds || 0;
                         return new Date(seconds * 1000).toISOString();
-                    } catch (e) {
+                    } catch {
                         return null;
                     }
                 })(),
                 isDelete: res.value.isDelete,
-                data: res.value.isDelete ? null : JSON.parse(res.value.value.toString()),
+                data: res.value.isDelete
+                    ? null
+                    : JSON.parse(res.value.value.toString()),
             };
+
             results.push(record);
-            res = await resultsIterator.next();
+            res = await iterator.next();
         }
 
-        await resultsIterator.close();
+        await iterator.close();
         return JSON.stringify(results);
     }
 
     // =========================================================
-    // QueryByKlinik — rich query semua surat dari klinik tertentu
-    //
-    // Membutuhkan CouchDB (sudah dikonfigurasi di docker-compose)
-    // Pola dari: fabric-samples/asset-transfer-ledger-queries
-    // Args:
-    //   klinikID — ID klinik yang ingin di-query
-    // =========================================================
     async QueryByKlinik(ctx, klinikID) {
 
-        // Rich query dengan CouchDB selector
-        // Pola resmi: getQueryResult dari fabric-samples
+        this._validateRequired(klinikID);
+
         const queryString = JSON.stringify({
             selector: {
+                docType: 'surat_sakit',
                 klinikID: klinikID,
-            },
-            sort: [{ createdAt: 'desc' }],
+            }
         });
 
         return await this._getQueryResultForQueryString(ctx, queryString);
     }
 
-    // =========================================================
-    // QueryByDokter — rich query semua surat dari dokter tertentu
-    // Args:
-    //   dokterID — ID dokter
     // =========================================================
     async QueryByDokter(ctx, dokterID) {
 
+        this._validateRequired(dokterID);
+
         const queryString = JSON.stringify({
             selector: {
+                docType: 'surat_sakit',
                 dokterID: dokterID,
-            },
-            sort: [{ createdAt: 'desc' }],
+            }
         });
 
         return await this._getQueryResultForQueryString(ctx, queryString);
     }
 
-    // =========================================================
-    // SuratSakitExists — cek apakah surat sudah ada di ledger
-    // Helper function — tidak bisa dipanggil langsung dari client
-    // Diawali underscore = private (konvensi komunitas Fabric)
     // =========================================================
     async SuratSakitExists(ctx, id) {
         const suratJSON = await ctx.stub.getState(id);
@@ -240,22 +226,18 @@ class MedicalContract extends Contract {
     }
 
     // =========================================================
-    // _getQueryResultForQueryString — helper untuk rich query
-    // Private function (diawali underscore = konvensi komunitas)
-    // Pola resmi dari: fabric-samples/asset-transfer-ledger-queries
-    // =========================================================
     async _getQueryResultForQueryString(ctx, queryString) {
 
-        const resultsIterator = await ctx.stub.getQueryResult(queryString);
+        const iterator = await ctx.stub.getQueryResult(queryString);
         const results = [];
 
-        let res = await resultsIterator.next();
+        let res = await iterator.next();
         while (!res.done) {
             results.push(JSON.parse(res.value.value.toString()));
-            res = await resultsIterator.next();
+            res = await iterator.next();
         }
 
-        await resultsIterator.close();
+        await iterator.close();
         return JSON.stringify(results);
     }
 }

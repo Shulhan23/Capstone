@@ -1,0 +1,64 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'medchain-fabric'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+rule_files: []
+
+scrape_configs:
+
+  # Orderer 1
+  - job_name: 'orderer1'
+    static_configs:
+      - targets: ['orderer1.medchain.id:8443']
+    tls_config:
+      insecure_skip_verify: true
+
+  # Orderer 2
+  - job_name: 'orderer2'
+    static_configs:
+      - targets: ['orderer2.medchain.id:8444']
+    tls_config:
+      insecure_skip_verify: true
+
+  # Orderer 3
+  - job_name: 'orderer3'
+    static_configs:
+      - targets: ['orderer3.medchain.id:8445']
+    tls_config:
+      insecure_skip_verify: true
+
+  # Peer Klinik
+  - job_name: 'peer-klinik'
+    static_configs:
+      - targets: ['peer0.klinik.medchain.id:9443']
+    tls_config:
+      insecure_skip_verify: true
+
+  # Peer Akademik
+  - job_name: 'peer-akademik'
+    static_configs:
+      - targets: ['peer0.akademik.medchain.id:10443']
+    tls_config:
+      insecure_skip_verify: true
+
+  # CA Klinik
+  - job_name: 'ca-klinik'
+    static_configs:
+      - targets: ['ca.klinik.medchain.id:18054']
+
+  # CA Akademik
+  - job_name: 'ca-akademik'
+    static_configs:
+      - targets: ['ca.akademik.medchain.id:19054']
+
+  # Prometheus sendiri
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

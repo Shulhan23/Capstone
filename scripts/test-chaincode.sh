@@ -7,15 +7,15 @@ log()  { echo -e "${GREEN}[TEST]${NC} $1"; }
 fail() { echo -e "${RED}[FAIL]${NC} $1"; ((FAIL++)); }
 pass() { echo -e "${GREEN}[PASS]${NC} $1"; ((PASS++)); }
 
-DOMAIN="example.com"
+DOMAIN="medchain.id"
 CLI_CRYPTO="/etc/hyperledger/fabric/crypto"
-ORDERER_CA="${CLI_CRYPTO}/ordererOrganizations/${DOMAIN}/orderers/orderer.${DOMAIN}/msp/tlscacerts/tlsca.${DOMAIN}-cert.pem"
+ORDERER_CA="${CLI_CRYPTO}/ordererOrganizations/${DOMAIN}/orderers/orderer1.${DOMAIN}/msp/tlscacerts/tlsca.${DOMAIN}-cert.pem"
 PEER_CA="${CLI_CRYPTO}/peerOrganizations/klinik.${DOMAIN}/peers/peer0.klinik.${DOMAIN}/tls/ca.crt"
 
 invoke() {
   docker exec cli peer chaincode invoke \
-    -o orderer.${DOMAIN}:7050 \
-    --ordererTLSHostnameOverride orderer.${DOMAIN} \
+    -o orderer1.${DOMAIN}:7050 \
+    --ordererTLSHostnameOverride orderer1.${DOMAIN} \
     --tls --cafile $ORDERER_CA \
     -C medchannel -n medical \
     --peerAddresses peer0.klinik.${DOMAIN}:7051 \
@@ -35,9 +35,12 @@ echo -e "${YELLOW}   TEST CHAINCODE MEDICAL               ${NC}"
 echo -e "${YELLOW}========================================${NC}"
 echo ""
 
+# Tambahkan di atas bagian TEST 1
+TEST_HASH="a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3"
+
 # TEST 1 — Issue surat baru
 log "Test 1: IssueSuratSakit..."
-RESULT=$(invoke '{"function":"IssueSuratSakit","Args":["TEST-001","testhash123","D-001","K-001","P-001","2026-04-10"]}')
+RESULT=$(invoke "{\"function\":\"IssueSuratSakit\",\"Args\":[\"TEST-001\",\"${TEST_HASH}\",\"D-001\",\"K-001\",\"P-001\",\"2026-04-10\"]}")
 if echo "$RESULT" | grep -q "TEST-001"; then
   pass "IssueSuratSakit berhasil"
 else
@@ -48,7 +51,7 @@ sleep 2  # tunggu transaksi committed
 
 # TEST 2 — Verifikasi hash benar
 log "Test 2: VerifySuratSakit (hash benar)..."
-RESULT=$(query '{"function":"VerifySuratSakit","Args":["TEST-001","testhash123"]}')
+RESULT=$(query "{\"function\":\"VerifySuratSakit\",\"Args\":[\"TEST-001\",\"${TEST_HASH}\"]}")
 if echo "$RESULT" | grep -q '"valid":true'; then
   pass "Verifikasi hash benar: valid=true"
 else
@@ -57,7 +60,7 @@ fi
 
 # TEST 3 — Verifikasi hash salah
 log "Test 3: VerifySuratSakit (hash salah)..."
-RESULT=$(query '{"function":"VerifySuratSakit","Args":["TEST-001","hash-SALAH"]}')
+RESULT=$(query "{\"function\":\"VerifySuratSakit\",\"Args\":[\"TEST-001\",\"${WRONG_HASH}\"]}")
 if echo "$RESULT" | grep -q '"valid":false'; then
   pass "Verifikasi hash salah: valid=false"
 else
@@ -86,7 +89,7 @@ sleep 2
 
 # TEST 6 — Verifikasi setelah revoke
 log "Test 6: VerifySuratSakit setelah revoke..."
-RESULT=$(query '{"function":"VerifySuratSakit","Args":["TEST-001","testhash123"]}')
+RESULT=$(query "{\"function\":\"VerifySuratSakit\",\"Args\":[\"TEST-001\",\"${TEST_HASH}\"]}")
 if echo "$RESULT" | grep -q '"reason":"REVOKED"'; then
   pass "Verifikasi setelah revoke: reason=REVOKED"
 else
@@ -104,7 +107,7 @@ fi
 
 # TEST 8 — Duplikat ID
 log "Test 8: IssueSuratSakit duplikat ID..."
-RESULT=$(invoke '{"function":"IssueSuratSakit","Args":["TEST-001","hash-baru","D-001","K-001","P-001","2026-04-10"]}')
+RESULT=$(invoke "{\"function\":\"IssueSuratSakit\",\"Args\":[\"TEST-001\",\"${TEST_HASH}\",\"D-001\",\"K-001\",\"P-001\",\"2026-04-10\"]}")
 if echo "$RESULT" | grep -qi "error\|sudah ada"; then
   pass "Duplikat ID: error ditangani dengan benar"
 else

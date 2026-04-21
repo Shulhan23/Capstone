@@ -7,7 +7,7 @@ CHANNEL_NAME="medchannel"
 CHAINCODE_NAME="medical"
 CHAINCODE_VERSION="1.0"
 CHAINCODE_SEQUENCE="1"
-DOMAIN="example.com"
+DOMAIN="medchain.id"
 
 GREEN='\033[0;32m'; RED='\033[0;31m'; NC='\033[0m'
 log()   { echo -e "${GREEN}[INFO]${NC} $1"; }

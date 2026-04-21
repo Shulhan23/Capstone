@@ -1,14 +1,9 @@
-# =================================================================
-# MIGRASI KE PRODUCTION:
-#   sed -i 's/example\.com/DOMAIN_KAMU/g' configtx.yaml
-# =================================================================
-
 Organizations:
 
   - &OrdererOrg
     Name: OrdererOrg
     ID: OrdererMSP
-    MSPDir: crypto-config/ordererOrganizations/example.com/msp
+    MSPDir: organizations/ordererOrganizations/medchain.id/msp
     Policies:
       Readers:
         Type: Signature
@@ -19,17 +14,15 @@ Organizations:
       Admins:
         Type: Signature
         Rule: "OR('OrdererMSP.admin')"
+    OrdererEndpoints:
+      - orderer1.medchain.id:7050
+      - orderer2.medchain.id:8050
+      - orderer3.medchain.id:9050
 
-  # -------------------------------------------------------------------
-  # KLINIK — Org dengan hak READ + WRITE
-  # Hanya klinik yang boleh menerbitkan dan mencabut surat sakit
-  # Writers: hanya admin & client (bukan peer) agar peer tidak bisa
-  # submit transaksi tulis secara langsung tanpa melalui aplikasi
-  # -------------------------------------------------------------------
   - &Klinik
     Name: KlinikMSP
     ID: KlinikMSP
-    MSPDir: crypto-config/peerOrganizations/klinik.example.com/msp
+    MSPDir: organizations/peerOrganizations/klinik.medchain.id/msp
     Policies:
       Readers:
         Type: Signature
@@ -44,18 +37,13 @@ Organizations:
         Type: Signature
         Rule: "OR('KlinikMSP.peer')"
     AnchorPeers:
-      - Host: peer0.klinik.example.com
+      - Host: peer0.klinik.medchain.id
         Port: 7051
 
-  # -------------------------------------------------------------------
-  # AKADEMIK — Org dengan hak READ ONLY (verifikasi surat)
-  # Writers tetap ada agar org bisa join channel & approve chaincode,
-  # tapi endorsement policy chaincode mengunci write hanya ke KlinikMSP
-  # -------------------------------------------------------------------
   - &Akademik
     Name: AkademikMSP
     ID: AkademikMSP
-    MSPDir: crypto-config/peerOrganizations/akademik.example.com/msp
+    MSPDir: organizations/peerOrganizations/akademik.medchain.id/msp
     Policies:
       Readers:
         Type: Signature
@@ -70,7 +58,7 @@ Organizations:
         Type: Signature
         Rule: "OR('AkademikMSP.peer')"
     AnchorPeers:
-      - Host: peer0.akademik.example.com
+      - Host: peer0.akademik.medchain.id
         Port: 9051
 
 Capabilities:
@@ -93,15 +81,9 @@ Application: &ApplicationDefaults
     Admins:
       Type: ImplicitMeta
       Rule: "MAJORITY Admins"
-    # -------------------------------------------------------------------
-    # ENDORSEMENT POLICY GLOBAL (default untuk semua chaincode)
-    # "OR" artinya cukup 1 org yang endorse — cocok karena hanya Klinik
-    # yang akan submit transaksi tulis. Akademik hanya query (evaluate),
-    # query tidak butuh endorsement policy.
-    # -------------------------------------------------------------------
     LifecycleEndorsement:
       Type: ImplicitMeta
-      Rule: "MAJORITY Endorsement"
+      Rule: "ANY Endorsement"
     Endorsement:
       Type: Signature
       Rule: "OR('KlinikMSP.peer')"
@@ -111,13 +93,29 @@ Application: &ApplicationDefaults
 Orderer: &OrdererDefaults
   OrdererType: etcdraft
   Addresses:
-    - orderer.example.com:7050
+    - orderer1.medchain.id:7050
+    - orderer2.medchain.id:8050
+    - orderer3.medchain.id:9050
   EtcdRaft:
     Consenters:
-      - Host: orderer.example.com
+      - Host: orderer1.medchain.id
         Port: 7050
-        ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-        ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+        ClientTLSCert: organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/tls/server.crt
+        ServerTLSCert: organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/tls/server.crt
+      - Host: orderer2.medchain.id
+        Port: 8050
+        ClientTLSCert: organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/tls/server.crt
+        ServerTLSCert: organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/tls/server.crt
+      - Host: orderer3.medchain.id
+        Port: 9050
+        ClientTLSCert: organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/tls/server.crt
+        ServerTLSCert: organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/tls/server.crt
+    Options:
+      TickInterval: 500ms
+      ElectionTick: 10
+      HeartbeatTick: 1
+      MaxInflightBlocks: 5
+      SnapshotIntervalSize: 16777216
   BatchTimeout: 2s
   BatchSize:
     MaxMessageCount: 10
@@ -155,7 +153,6 @@ Channel: &ChannelDefaults
     <<: *ChannelCapabilities
 
 Profiles:
-  # Genesis block — hanya 2 org
   TwoOrgsOrdererGenesis:
     <<: *ChannelDefaults
     Orderer:
@@ -170,7 +167,6 @@ Profiles:
           - *Klinik
           - *Akademik
 
-  # Channel untuk transaksi surat sakit
   TwoOrgsChannel:
     <<: *ChannelDefaults
     Consortium: MedConsortium
