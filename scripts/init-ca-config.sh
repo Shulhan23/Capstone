@@ -25,7 +25,7 @@ _init_log
 # -----------------------------------------------------------------
 init_ca_config() {
   local org_name="$1"   # orderer / klinik / akademik
-  local ca_name="$2"    # ca-orderer / ca-klinik / ca-akademik
+  local ca_name="$2"    # ca-orderer / ca-klinik / ca-akademik /ca-dokter
   local port="$3"
 
   local ca_dir="${PROJECT_ROOT}/organizations/fabric-ca/${org_name}"
@@ -183,6 +183,7 @@ step "Init CA configs"
 init_ca_config "orderer"  "ca-orderer"  7054
 init_ca_config "klinik"   "ca-klinik"   8054
 init_ca_config "akademik" "ca-akademik" 9054
+init_ca_config "dokter"   "ca-dokter"   10054
 
 step_ok
 log "Semua CA config siap. Lanjutkan dengan: bash scripts/setup-production.sh"

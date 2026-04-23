@@ -150,11 +150,12 @@ enroll_peer_org() {
   write_ou_config "${ORG_MSP}"
   log "MSP bootstrap selesai."
 
-  # Register peer0
+  # ---------------------------------------------------------------
+  # Register + enroll peer0
+  # ---------------------------------------------------------------
   ca_register "${ORG_MSP}" "${CA_NAME}" "${CA_CERT}" \
     "peer0${org_name}" "peer0${org_name}pw" "peer"
 
-  # ← INI YANG DIUBAH: gunakan credential peer0, bukan CA admin
   local PEER0_URL="https://peer0${org_name}:peer0${org_name}pw@ca.${ORG_FQDN}:${ca_port}"
 
   enroll_node \
@@ -164,7 +165,24 @@ enroll_peer_org() {
     "peer0.${ORG_FQDN},localhost,127.0.0.1"
   log "peer0.${ORG_FQDN} enrolled."
 
-  # Register dan enroll user
+  # ---------------------------------------------------------------
+  # Register + enroll peer1
+  # ---------------------------------------------------------------
+  ca_register "${ORG_MSP}" "${CA_NAME}" "${CA_CERT}" \
+    "peer1${org_name}" "peer1${org_name}pw" "peer"
+
+  local PEER1_URL="https://peer1${org_name}:peer1${org_name}pw@ca.${ORG_FQDN}:${ca_port}"
+
+  enroll_node \
+    "${ORG_MSP}" \
+    "${ORG_DIR}/peers/peer1.${ORG_FQDN}" \
+    "${PEER1_URL}" "${CA_NAME}" "${CA_CERT}" \
+    "peer1.${ORG_FQDN},localhost,127.0.0.1"
+  log "peer1.${ORG_FQDN} enrolled."
+
+  # ---------------------------------------------------------------
+  # Register + enroll user
+  # ---------------------------------------------------------------
   ca_register "${ORG_MSP}" "${CA_NAME}" "${CA_CERT}" \
     "user${org_name^}1" "user${org_name^}1pw" "client"
 
@@ -176,7 +194,9 @@ enroll_peer_org() {
     "${ORG_MSP}/config.yaml"
   log "User1@${ORG_FQDN} enrolled."
 
-  # Register dan enroll admin
+  # ---------------------------------------------------------------
+  # Register + enroll admin
+  # ---------------------------------------------------------------
   ca_register "${ORG_MSP}" "${CA_NAME}" "${CA_CERT}" \
     "admin${org_name^}" "admin${org_name^}pw" "admin"
 
@@ -194,12 +214,12 @@ enroll_peer_org() {
     -noout -subject 2>/dev/null | grep -oP 'OU = \K\w+')"
   log "Admin OU: ${admin_ou}"
 
-  # Buat admincerts di org MSP
+  # admincerts
   mkdir -p "${ORG_MSP}/admincerts"
   cp "${ORG_DIR}/users/Admin@${ORG_FQDN}/msp/signcerts/"*.pem \
      "${ORG_MSP}/admincerts/Admin@${ORG_FQDN}-cert.pem"
 
-  # Buat tlscacerts di org MSP
+  # tlscacerts
   mkdir -p "${ORG_MSP}/tlscacerts"
   cp "${ORG_DIR}/peers/peer0.${ORG_FQDN}/tls/ca.crt" \
      "${ORG_MSP}/tlscacerts/ca.crt"
@@ -216,6 +236,7 @@ log "Log: ${LOG_FILE}"
 enroll_orderer_org
 enroll_peer_org "klinik"   8054
 enroll_peer_org "akademik" 9054
+enroll_peer_org "dokter"   10054
 
 # Untuk menambah org baru: enroll_peer_org "namaorg" <port>
 

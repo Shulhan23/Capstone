@@ -61,6 +61,27 @@ Organizations:
       - Host: peer0.akademik.medchain.id
         Port: 9051
 
+  - &Dokter
+    Name: DokterMSP
+    ID: DokterMSP
+    MSPDir: organizations/peerOrganizations/dokter.medchain.id/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('DokterMSP.admin', 'DokterMSP.peer', 'DokterMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('DokterMSP.admin', 'DokterMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('DokterMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('DokterMSP.peer')"
+    AnchorPeers:
+      - Host: peer0.dokter.medchain.id
+        Port: 10051
+
 Capabilities:
   Channel: &ChannelCapabilities
     V2_0: true
@@ -83,10 +104,10 @@ Application: &ApplicationDefaults
       Rule: "MAJORITY Admins"
     LifecycleEndorsement:
       Type: ImplicitMeta
-      Rule: "ANY Endorsement"
+      Rule: "MAJORITY Endorsement"
     Endorsement:
-      Type: Signature
-      Rule: "OR('KlinikMSP.peer')"
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
   Capabilities:
     <<: *ApplicationCapabilities
 
@@ -153,7 +174,7 @@ Channel: &ChannelDefaults
     <<: *ChannelCapabilities
 
 Profiles:
-  TwoOrgsOrdererGenesis:
+  ThreeOrgsOrdererGenesis:
     <<: *ChannelDefaults
     Orderer:
       <<: *OrdererDefaults
@@ -166,8 +187,9 @@ Profiles:
         Organizations:
           - *Klinik
           - *Akademik
+          - *Dokter
 
-  TwoOrgsChannel:
+  ThreeOrgsChannel:
     <<: *ChannelDefaults
     Consortium: MedConsortium
     Application:
@@ -175,5 +197,6 @@ Profiles:
       Organizations:
         - *Klinik
         - *Akademik
+        - *Dokter
       Capabilities:
         <<: *ApplicationCapabilities

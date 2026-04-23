@@ -1,0 +1,131 @@
+[2026-04-22 17:44:01][INFO ] Memulai setup channel...
+[2026-04-22 17:44:01][INFO ] Log: /home/shulhan/Capstone/logs/setup-channel-20260422_174401.log
+[2026-04-22 17:44:01][INFO ]   Genesis block...
+[34m2026-04-22 17:44:02.191 WIB 0001 INFO[0m [common.tools.configtxgen] [34;1mmain[0m -> Loading configuration
+[34m2026-04-22 17:44:02.233 WIB 0002 INFO[0m [common.tools.configtxgen.localconfig] [34;1mcompleteInitialization[0m -> orderer type: etcdraft
+[34m2026-04-22 17:44:02.234 WIB 0003 INFO[0m [common.tools.configtxgen.localconfig] [34;1mLoad[0m -> Loaded configuration: /home/shulhan/Capstone/configtx.yaml
+[34m2026-04-22 17:44:02.236 WIB 0004 INFO[0m [common.tools.configtxgen] [34;1mdoOutputBlock[0m -> Generating genesis block
+[34m2026-04-22 17:44:02.236 WIB 0005 INFO[0m [common.tools.configtxgen] [34;1mdoOutputBlock[0m -> Creating system channel genesis block
+[34m2026-04-22 17:44:02.237 WIB 0006 INFO[0m [common.tools.configtxgen] [34;1mdoOutputBlock[0m -> Writing genesis block
+[2026-04-22 17:44:02][INFO ]   Channel transaction...
+[34m2026-04-22 17:44:02.345 WIB 0001 INFO[0m [common.tools.configtxgen] [34;1mmain[0m -> Loading configuration
+[34m2026-04-22 17:44:02.357 WIB 0002 INFO[0m [common.tools.configtxgen.localconfig] [34;1mLoad[0m -> Loaded configuration: /home/shulhan/Capstone/configtx.yaml
+[34m2026-04-22 17:44:02.357 WIB 0003 INFO[0m [common.tools.configtxgen] [34;1mdoOutputChannelCreateTx[0m -> Generating new channel configtx
+[34m2026-04-22 17:44:02.359 WIB 0004 INFO[0m [common.tools.configtxgen] [34;1mdoOutputChannelCreateTx[0m -> Writing new channel tx
+[2026-04-22 17:44:02][INFO ]   Anchor peer KlinikMSP...
+[34m2026-04-22 17:44:02.392 WIB 0001 INFO[0m [common.tools.configtxgen] [34;1mmain[0m -> Loading configuration
+[34m2026-04-22 17:44:02.402 WIB 0002 INFO[0m [common.tools.configtxgen.localconfig] [34;1mLoad[0m -> Loaded configuration: /home/shulhan/Capstone/configtx.yaml
+[34m2026-04-22 17:44:02.403 WIB 0003 INFO[0m [common.tools.configtxgen] [34;1mdoOutputAnchorPeersUpdate[0m -> Generating anchor peer update
+[34m2026-04-22 17:44:02.404 WIB 0004 INFO[0m [common.tools.configtxgen] [34;1mdoOutputAnchorPeersUpdate[0m -> Writing anchor peer update
+[2026-04-22 17:44:02][INFO ]   Anchor peer AkademikMSP...
+[34m2026-04-22 17:44:02.436 WIB 0001 INFO[0m [common.tools.configtxgen] [34;1mmain[0m -> Loading configuration
+[34m2026-04-22 17:44:02.446 WIB 0002 INFO[0m [common.tools.configtxgen.localconfig] [34;1mLoad[0m -> Loaded configuration: /home/shulhan/Capstone/configtx.yaml
+[34m2026-04-22 17:44:02.446 WIB 0003 INFO[0m [common.tools.configtxgen] [34;1mdoOutputAnchorPeersUpdate[0m -> Generating anchor peer update
+[34m2026-04-22 17:44:02.448 WIB 0004 INFO[0m [common.tools.configtxgen] [34;1mdoOutputAnchorPeersUpdate[0m -> Writing anchor peer update
+[2026-04-22 17:44:02][INFO ]   Anchor peer DokterMSP...
+[34m2026-04-22 17:44:02.487 WIB 0001 INFO[0m [common.tools.configtxgen] [34;1mmain[0m -> Loading configuration
+[34m2026-04-22 17:44:02.497 WIB 0002 INFO[0m [common.tools.configtxgen.localconfig] [34;1mLoad[0m -> Loaded configuration: /home/shulhan/Capstone/configtx.yaml
+[34m2026-04-22 17:44:02.497 WIB 0003 INFO[0m [common.tools.configtxgen] [34;1mdoOutputAnchorPeersUpdate[0m -> Generating anchor peer update
+[34m2026-04-22 17:44:02.499 WIB 0004 INFO[0m [common.tools.configtxgen] [34;1mdoOutputAnchorPeersUpdate[0m -> Writing anchor peer update
+time="2026-04-22T17:44:02+07:00" level=warning msg="The \"GRAFANA_PASSWORD\" variable is not set. Defaulting to a blank string."
+time="2026-04-22T17:44:02+07:00" level=warning msg="/home/shulhan/Capstone/docker-compose.yaml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Volume capstone_orderer1.medchain.id Creating 
+ Volume capstone_orderer1.medchain.id Created 
+ Volume capstone_peer0.dokter.medchain.id Creating 
+ Volume capstone_peer0.dokter.medchain.id Created 
+ Volume capstone_peer0.klinik.medchain.id Creating 
+ Volume capstone_peer0.klinik.medchain.id Created 
+ Volume capstone_peer0.akademik.medchain.id Creating 
+ Volume capstone_peer0.akademik.medchain.id Created 
+ Volume capstone_orderer3.medchain.id Creating 
+ Volume capstone_orderer3.medchain.id Created 
+ Volume capstone_orderer2.medchain.id Creating 
+ Volume capstone_orderer2.medchain.id Created 
+ Container orderer3.medchain.id Creating 
+ Container orderer2.medchain.id Creating 
+ Container couchdb.akademik.peer0 Creating 
+ Container couchdb.klinik.peer0 Creating 
+ Container orderer1.medchain.id Creating 
+ Container couchdb.dokter.peer0 Creating 
+ Container couchdb.klinik.peer0 Created 
+ Container couchdb.dokter.peer0 Created 
+ Container orderer2.medchain.id Created 
+ Container couchdb.akademik.peer0 Created 
+ Container orderer3.medchain.id Created 
+ Container orderer1.medchain.id Created 
+ Container peer0.akademik.medchain.id Creating 
+ Container peer0.klinik.medchain.id Creating 
+ Container peer0.dokter.medchain.id Creating 
+ Container peer0.klinik.medchain.id Created 
+ Container peer0.dokter.medchain.id Created 
+ Container peer0.akademik.medchain.id Created 
+ Container cli Creating 
+ Container cli Created 
+ Container orderer2.medchain.id Starting 
+ Container couchdb.dokter.peer0 Starting 
+ Container orderer3.medchain.id Starting 
+ Container couchdb.klinik.peer0 Starting 
+ Container orderer1.medchain.id Starting 
+ Container couchdb.akademik.peer0 Starting 
+ Container orderer1.medchain.id Started 
+ Container couchdb.klinik.peer0 Started 
+ Container orderer1.medchain.id Waiting 
+ Container couchdb.klinik.peer0 Waiting 
+ Container couchdb.akademik.peer0 Started 
+ Container orderer1.medchain.id Waiting 
+ Container couchdb.akademik.peer0 Waiting 
+ Container orderer2.medchain.id Started 
+ Container orderer3.medchain.id Started 
+ Container couchdb.dokter.peer0 Started 
+ Container orderer1.medchain.id Waiting 
+ Container couchdb.dokter.peer0 Waiting 
+ Container orderer1.medchain.id Healthy 
+ Container orderer1.medchain.id Healthy 
+ Container orderer1.medchain.id Healthy 
+ Container couchdb.klinik.peer0 Healthy 
+ Container peer0.klinik.medchain.id Starting 
+ Container couchdb.akademik.peer0 Healthy 
+ Container peer0.akademik.medchain.id Starting 
+ Container peer0.klinik.medchain.id Started 
+ Container peer0.akademik.medchain.id Started 
+ Container couchdb.dokter.peer0 Healthy 
+ Container peer0.dokter.medchain.id Starting 
+ Container peer0.dokter.medchain.id Started 
+ Container peer0.klinik.medchain.id Waiting 
+ Container peer0.akademik.medchain.id Waiting 
+ Container peer0.dokter.medchain.id Waiting 
+ Container orderer1.medchain.id Waiting 
+ Container orderer1.medchain.id Healthy 
+ Container peer0.klinik.medchain.id Healthy 
+ Container peer0.akademik.medchain.id Healthy 
+ Container peer0.dokter.medchain.id Healthy 
+ Container cli Starting 
+ Container cli Started 
+[34m2026-04-22 10:44:43.224 UTC 0001 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-22 10:44:43.251 UTC 0002 INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{NOT_FOUND}
+[34m2026-04-22 10:44:43.260 UTC 0003 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-22 10:44:43.462 UTC 0004 INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
+[34m2026-04-22 10:44:43.465 UTC 0005 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-22 10:44:43.666 UTC 0006 INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
+[34m2026-04-22 10:44:43.669 UTC 0007 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-22 10:44:43.871 UTC 0008 INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
+[34m2026-04-22 10:44:43.873 UTC 0009 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-22 10:44:44.075 UTC 000a INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
+[34m2026-04-22 10:44:44.078 UTC 000b INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-22 10:44:44.280 UTC 000c INFO[0m [cli.common] [34;1mreadBlock[0m -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
+[34m2026-04-22 10:44:44.283 UTC 000d INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-22 10:44:44.488 UTC 000e INFO[0m [cli.common] [34;1mreadBlock[0m -> Received block: 0
+[2026-04-22 17:44:44][INFO ] Channel 'medchannel' berhasil dibuat.
+[2026-04-22 17:44:44][INFO ]   peer0.klinik...
+[34m2026-04-22 10:44:44.788 UTC 0001 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-22 10:44:44.946 UTC 0002 INFO[0m [channelCmd] [34;1mexecuteJoin[0m -> Successfully submitted proposal to join channel
+[2026-04-22 17:44:44][INFO ]   peer0.klinik ✓
+[2026-04-22 17:44:44][INFO ]   peer0.akademik...
+[34m2026-04-22 10:44:45.235 UTC 0001 INFO[0m [channelCmd] [34;1mInitCmdFactory[0m -> Endorser and orderer connections initialized
+[34m2026-04-22 10:44:45.383 UTC 0002 INFO[0m [channelCmd] [34;1mexecuteJoin[0m -> Successfully submitted proposal to join channel
+[2026-04-22 17:44:45][INFO ]   peer0.akademik ✓
+[2026-04-22 17:44:45][INFO ]   peer0.dokter...
+Error: error getting endorser client for channel: endorser client failed to connect to peer0.dokter.medchain.id:10051: failed to create new connection: context deadline exceeded
+[2026-04-22 17:44:52][ERROR] peer0.dokter gagal join channel.
+[2026-04-22 17:44:52][WARN ] Menjalankan rollback...
+[2026-04-22 17:44:58][WARN ] Rollback selesai.

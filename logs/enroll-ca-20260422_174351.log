@@ -1,0 +1,315 @@
+[2026-04-22 17:43:51][INFO ] Memulai enrollment semua organisasi...
+[2026-04-22 17:43:51][INFO ] Log: /home/shulhan/Capstone/logs/enroll-ca-20260422_174351.log
+2026/04/22 17:43:51 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:51 [INFO] TLS Enabled
+2026/04/22 17:43:51 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:51 [INFO] encoded CSR
+2026/04/22 17:43:51 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:51 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/msp/cacerts/ca-orderer-medchain-id-7054-ca-orderer.pem
+2026/04/22 17:43:51 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:51 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:43:51][INFO ] MSP bootstrap selesai.
+2026/04/22 17:43:51 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:51 [INFO] TLS Enabled
+2026/04/22 17:43:51 [INFO] TLS Enabled
+Password: orderer1pw
+2026/04/22 17:43:51 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:51 [INFO] TLS Enabled
+2026/04/22 17:43:51 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:51 [INFO] encoded CSR
+2026/04/22 17:43:51 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:51 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/msp/cacerts/ca-orderer-medchain-id-7054-ca-orderer.pem
+2026/04/22 17:43:51 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:51 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/msp/IssuerRevocationPublicKey
+2026/04/22 17:43:51 [INFO] TLS Enabled
+2026/04/22 17:43:51 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:51 [INFO] encoded CSR
+2026/04/22 17:43:51 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/tls/signcerts/cert.pem
+2026/04/22 17:43:51 [INFO] Stored TLS root CA certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/tls/tlscacerts/tls-ca-orderer-medchain-id-7054-ca-orderer.pem
+2026/04/22 17:43:51 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/tls/IssuerPublicKey
+2026/04/22 17:43:51 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer1.medchain.id/tls/IssuerRevocationPublicKey
+[2026-04-22 17:43:51][INFO ] orderer1.medchain.id enrolled. (1/3)
+2026/04/22 17:43:51 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:51 [INFO] TLS Enabled
+2026/04/22 17:43:51 [INFO] TLS Enabled
+Password: orderer2pw
+2026/04/22 17:43:51 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:51 [INFO] TLS Enabled
+2026/04/22 17:43:51 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:51 [INFO] encoded CSR
+2026/04/22 17:43:52 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:52 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/msp/cacerts/ca-orderer-medchain-id-7054-ca-orderer.pem
+2026/04/22 17:43:52 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:52 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/msp/IssuerRevocationPublicKey
+2026/04/22 17:43:52 [INFO] TLS Enabled
+2026/04/22 17:43:52 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:52 [INFO] encoded CSR
+2026/04/22 17:43:52 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/tls/signcerts/cert.pem
+2026/04/22 17:43:52 [INFO] Stored TLS root CA certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/tls/tlscacerts/tls-ca-orderer-medchain-id-7054-ca-orderer.pem
+2026/04/22 17:43:52 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/tls/IssuerPublicKey
+2026/04/22 17:43:52 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer2.medchain.id/tls/IssuerRevocationPublicKey
+[2026-04-22 17:43:52][INFO ] orderer2.medchain.id enrolled. (2/3)
+2026/04/22 17:43:52 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:52 [INFO] TLS Enabled
+2026/04/22 17:43:52 [INFO] TLS Enabled
+Password: orderer3pw
+2026/04/22 17:43:52 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:52 [INFO] TLS Enabled
+2026/04/22 17:43:52 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:52 [INFO] encoded CSR
+2026/04/22 17:43:52 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:52 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/msp/cacerts/ca-orderer-medchain-id-7054-ca-orderer.pem
+2026/04/22 17:43:52 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:52 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/msp/IssuerRevocationPublicKey
+2026/04/22 17:43:52 [INFO] TLS Enabled
+2026/04/22 17:43:52 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:52 [INFO] encoded CSR
+2026/04/22 17:43:52 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/tls/signcerts/cert.pem
+2026/04/22 17:43:52 [INFO] Stored TLS root CA certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/tls/tlscacerts/tls-ca-orderer-medchain-id-7054-ca-orderer.pem
+2026/04/22 17:43:52 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/tls/IssuerPublicKey
+2026/04/22 17:43:52 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/orderers/orderer3.medchain.id/tls/IssuerRevocationPublicKey
+[2026-04-22 17:43:52][INFO ] orderer3.medchain.id enrolled. (3/3)
+2026/04/22 17:43:52 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:52 [INFO] TLS Enabled
+2026/04/22 17:43:52 [INFO] TLS Enabled
+Password: ordererAdminpw
+2026/04/22 17:43:52 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/users/Admin@medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:52 [INFO] TLS Enabled
+2026/04/22 17:43:52 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:52 [INFO] encoded CSR
+2026/04/22 17:43:52 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/users/Admin@medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:52 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/users/Admin@medchain.id/msp/cacerts/ca-orderer-medchain-id-7054-ca-orderer.pem
+2026/04/22 17:43:52 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/users/Admin@medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:52 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/ordererOrganizations/medchain.id/users/Admin@medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:43:52][INFO ] Admin@medchain.id enrolled.
+[2026-04-22 17:43:53][INFO ] Admin OU: admin
+2026/04/22 17:43:53 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:53 [INFO] TLS Enabled
+2026/04/22 17:43:53 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:53 [INFO] encoded CSR
+2026/04/22 17:43:53 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:53 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/msp/cacerts/ca-klinik-medchain-id-8054-ca-klinik.pem
+2026/04/22 17:43:53 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:53 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:43:53][INFO ] MSP bootstrap selesai.
+2026/04/22 17:43:53 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:53 [INFO] TLS Enabled
+2026/04/22 17:43:53 [INFO] TLS Enabled
+Password: peer0klinikpw
+2026/04/22 17:43:53 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer0.klinik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:53 [INFO] TLS Enabled
+2026/04/22 17:43:53 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:53 [INFO] encoded CSR
+2026/04/22 17:43:53 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer0.klinik.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:53 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer0.klinik.medchain.id/msp/cacerts/ca-klinik-medchain-id-8054-ca-klinik.pem
+2026/04/22 17:43:53 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer0.klinik.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:53 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer0.klinik.medchain.id/msp/IssuerRevocationPublicKey
+2026/04/22 17:43:53 [INFO] TLS Enabled
+2026/04/22 17:43:53 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:53 [INFO] encoded CSR
+2026/04/22 17:43:53 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer0.klinik.medchain.id/tls/signcerts/cert.pem
+2026/04/22 17:43:53 [INFO] Stored TLS root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer0.klinik.medchain.id/tls/tlscacerts/tls-ca-klinik-medchain-id-8054-ca-klinik.pem
+2026/04/22 17:43:53 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer0.klinik.medchain.id/tls/IssuerPublicKey
+2026/04/22 17:43:53 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer0.klinik.medchain.id/tls/IssuerRevocationPublicKey
+[2026-04-22 17:43:53][INFO ] peer0.klinik.medchain.id enrolled.
+2026/04/22 17:43:53 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:53 [INFO] TLS Enabled
+2026/04/22 17:43:53 [INFO] TLS Enabled
+Password: peer1klinikpw
+2026/04/22 17:43:53 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer1.klinik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:53 [INFO] TLS Enabled
+2026/04/22 17:43:53 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:53 [INFO] encoded CSR
+2026/04/22 17:43:53 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer1.klinik.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:53 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer1.klinik.medchain.id/msp/cacerts/ca-klinik-medchain-id-8054-ca-klinik.pem
+2026/04/22 17:43:53 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer1.klinik.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:53 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer1.klinik.medchain.id/msp/IssuerRevocationPublicKey
+2026/04/22 17:43:53 [INFO] TLS Enabled
+2026/04/22 17:43:53 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:53 [INFO] encoded CSR
+2026/04/22 17:43:54 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer1.klinik.medchain.id/tls/signcerts/cert.pem
+2026/04/22 17:43:54 [INFO] Stored TLS root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer1.klinik.medchain.id/tls/tlscacerts/tls-ca-klinik-medchain-id-8054-ca-klinik.pem
+2026/04/22 17:43:54 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer1.klinik.medchain.id/tls/IssuerPublicKey
+2026/04/22 17:43:54 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/peers/peer1.klinik.medchain.id/tls/IssuerRevocationPublicKey
+[2026-04-22 17:43:54][INFO ] peer1.klinik.medchain.id enrolled.
+2026/04/22 17:43:54 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:54 [INFO] TLS Enabled
+2026/04/22 17:43:54 [INFO] TLS Enabled
+Password: userKlinik1pw
+2026/04/22 17:43:54 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/users/User1@klinik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:54 [INFO] TLS Enabled
+2026/04/22 17:43:54 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:54 [INFO] encoded CSR
+2026/04/22 17:43:54 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/users/User1@klinik.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:54 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/users/User1@klinik.medchain.id/msp/cacerts/ca-klinik-medchain-id-8054-ca-klinik.pem
+2026/04/22 17:43:54 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/users/User1@klinik.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:54 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/users/User1@klinik.medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:43:54][INFO ] User1@klinik.medchain.id enrolled.
+2026/04/22 17:43:54 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:54 [INFO] TLS Enabled
+2026/04/22 17:43:54 [INFO] TLS Enabled
+Password: adminKlinikpw
+2026/04/22 17:43:54 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/users/Admin@klinik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:54 [INFO] TLS Enabled
+2026/04/22 17:43:54 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:54 [INFO] encoded CSR
+2026/04/22 17:43:54 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/users/Admin@klinik.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:54 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/users/Admin@klinik.medchain.id/msp/cacerts/ca-klinik-medchain-id-8054-ca-klinik.pem
+2026/04/22 17:43:54 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/users/Admin@klinik.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:54 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/klinik.medchain.id/users/Admin@klinik.medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:43:54][INFO ] Admin@klinik.medchain.id enrolled.
+[2026-04-22 17:43:54][INFO ] Admin OU: admin
+2026/04/22 17:43:54 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:54 [INFO] TLS Enabled
+2026/04/22 17:43:54 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:54 [INFO] encoded CSR
+2026/04/22 17:43:54 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:54 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/msp/cacerts/ca-akademik-medchain-id-9054-ca-akademik.pem
+2026/04/22 17:43:54 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:54 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:43:54][INFO ] MSP bootstrap selesai.
+2026/04/22 17:43:55 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:55 [INFO] TLS Enabled
+2026/04/22 17:43:55 [INFO] TLS Enabled
+Password: peer0akademikpw
+2026/04/22 17:43:55 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer0.akademik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:55 [INFO] TLS Enabled
+2026/04/22 17:43:55 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:55 [INFO] encoded CSR
+2026/04/22 17:43:55 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer0.akademik.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:55 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer0.akademik.medchain.id/msp/cacerts/ca-akademik-medchain-id-9054-ca-akademik.pem
+2026/04/22 17:43:55 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer0.akademik.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:55 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer0.akademik.medchain.id/msp/IssuerRevocationPublicKey
+2026/04/22 17:43:55 [INFO] TLS Enabled
+2026/04/22 17:43:55 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:55 [INFO] encoded CSR
+2026/04/22 17:43:55 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer0.akademik.medchain.id/tls/signcerts/cert.pem
+2026/04/22 17:43:55 [INFO] Stored TLS root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer0.akademik.medchain.id/tls/tlscacerts/tls-ca-akademik-medchain-id-9054-ca-akademik.pem
+2026/04/22 17:43:55 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer0.akademik.medchain.id/tls/IssuerPublicKey
+2026/04/22 17:43:55 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer0.akademik.medchain.id/tls/IssuerRevocationPublicKey
+[2026-04-22 17:43:55][INFO ] peer0.akademik.medchain.id enrolled.
+2026/04/22 17:43:55 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:55 [INFO] TLS Enabled
+2026/04/22 17:43:55 [INFO] TLS Enabled
+Password: peer1akademikpw
+2026/04/22 17:43:55 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer1.akademik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:55 [INFO] TLS Enabled
+2026/04/22 17:43:55 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:55 [INFO] encoded CSR
+2026/04/22 17:43:55 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer1.akademik.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:55 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer1.akademik.medchain.id/msp/cacerts/ca-akademik-medchain-id-9054-ca-akademik.pem
+2026/04/22 17:43:55 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer1.akademik.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:55 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer1.akademik.medchain.id/msp/IssuerRevocationPublicKey
+2026/04/22 17:43:55 [INFO] TLS Enabled
+2026/04/22 17:43:55 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:55 [INFO] encoded CSR
+2026/04/22 17:43:55 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer1.akademik.medchain.id/tls/signcerts/cert.pem
+2026/04/22 17:43:55 [INFO] Stored TLS root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer1.akademik.medchain.id/tls/tlscacerts/tls-ca-akademik-medchain-id-9054-ca-akademik.pem
+2026/04/22 17:43:55 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer1.akademik.medchain.id/tls/IssuerPublicKey
+2026/04/22 17:43:55 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/peers/peer1.akademik.medchain.id/tls/IssuerRevocationPublicKey
+[2026-04-22 17:43:55][INFO ] peer1.akademik.medchain.id enrolled.
+2026/04/22 17:43:55 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:55 [INFO] TLS Enabled
+2026/04/22 17:43:55 [INFO] TLS Enabled
+Password: userAkademik1pw
+2026/04/22 17:43:56 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/users/User1@akademik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:56 [INFO] TLS Enabled
+2026/04/22 17:43:56 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:56 [INFO] encoded CSR
+2026/04/22 17:43:56 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/users/User1@akademik.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:56 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/users/User1@akademik.medchain.id/msp/cacerts/ca-akademik-medchain-id-9054-ca-akademik.pem
+2026/04/22 17:43:56 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/users/User1@akademik.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:56 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/users/User1@akademik.medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:43:56][INFO ] User1@akademik.medchain.id enrolled.
+2026/04/22 17:43:56 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:56 [INFO] TLS Enabled
+2026/04/22 17:43:56 [INFO] TLS Enabled
+Password: adminAkademikpw
+2026/04/22 17:43:56 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/users/Admin@akademik.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:56 [INFO] TLS Enabled
+2026/04/22 17:43:56 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:56 [INFO] encoded CSR
+2026/04/22 17:43:56 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/users/Admin@akademik.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:56 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/users/Admin@akademik.medchain.id/msp/cacerts/ca-akademik-medchain-id-9054-ca-akademik.pem
+2026/04/22 17:43:56 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/users/Admin@akademik.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:56 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/akademik.medchain.id/users/Admin@akademik.medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:43:56][INFO ] Admin@akademik.medchain.id enrolled.
+[2026-04-22 17:43:56][INFO ] Admin OU: admin
+2026/04/22 17:43:56 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:56 [INFO] TLS Enabled
+2026/04/22 17:43:56 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:56 [INFO] encoded CSR
+2026/04/22 17:43:56 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:56 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/msp/cacerts/ca-dokter-medchain-id-10054-ca-dokter.pem
+2026/04/22 17:43:56 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:56 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:43:56][INFO ] MSP bootstrap selesai.
+2026/04/22 17:43:56 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:56 [INFO] TLS Enabled
+2026/04/22 17:43:56 [INFO] TLS Enabled
+Password: peer0dokterpw
+2026/04/22 17:43:56 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer0.dokter.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:56 [INFO] TLS Enabled
+2026/04/22 17:43:56 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:56 [INFO] encoded CSR
+2026/04/22 17:43:56 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer0.dokter.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:56 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer0.dokter.medchain.id/msp/cacerts/ca-dokter-medchain-id-10054-ca-dokter.pem
+2026/04/22 17:43:56 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer0.dokter.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:56 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer0.dokter.medchain.id/msp/IssuerRevocationPublicKey
+2026/04/22 17:43:57 [INFO] TLS Enabled
+2026/04/22 17:43:57 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:57 [INFO] encoded CSR
+2026/04/22 17:43:57 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer0.dokter.medchain.id/tls/signcerts/cert.pem
+2026/04/22 17:43:57 [INFO] Stored TLS root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer0.dokter.medchain.id/tls/tlscacerts/tls-ca-dokter-medchain-id-10054-ca-dokter.pem
+2026/04/22 17:43:57 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer0.dokter.medchain.id/tls/IssuerPublicKey
+2026/04/22 17:43:57 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer0.dokter.medchain.id/tls/IssuerRevocationPublicKey
+[2026-04-22 17:43:57][INFO ] peer0.dokter.medchain.id enrolled.
+2026/04/22 17:43:57 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:57 [INFO] TLS Enabled
+2026/04/22 17:43:57 [INFO] TLS Enabled
+Password: peer1dokterpw
+2026/04/22 17:43:57 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer1.dokter.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:57 [INFO] TLS Enabled
+2026/04/22 17:43:57 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:57 [INFO] encoded CSR
+2026/04/22 17:43:57 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer1.dokter.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:57 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer1.dokter.medchain.id/msp/cacerts/ca-dokter-medchain-id-10054-ca-dokter.pem
+2026/04/22 17:43:57 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer1.dokter.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:57 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer1.dokter.medchain.id/msp/IssuerRevocationPublicKey
+2026/04/22 17:43:57 [INFO] TLS Enabled
+2026/04/22 17:43:57 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:57 [INFO] encoded CSR
+2026/04/22 17:43:57 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer1.dokter.medchain.id/tls/signcerts/cert.pem
+2026/04/22 17:43:57 [INFO] Stored TLS root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer1.dokter.medchain.id/tls/tlscacerts/tls-ca-dokter-medchain-id-10054-ca-dokter.pem
+2026/04/22 17:43:57 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer1.dokter.medchain.id/tls/IssuerPublicKey
+2026/04/22 17:43:57 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/peers/peer1.dokter.medchain.id/tls/IssuerRevocationPublicKey
+[2026-04-22 17:43:57][INFO ] peer1.dokter.medchain.id enrolled.
+2026/04/22 17:43:57 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:57 [INFO] TLS Enabled
+2026/04/22 17:43:57 [INFO] TLS Enabled
+Password: userDokter1pw
+2026/04/22 17:43:57 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/users/User1@dokter.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:57 [INFO] TLS Enabled
+2026/04/22 17:43:57 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:57 [INFO] encoded CSR
+2026/04/22 17:43:57 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/users/User1@dokter.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:43:57 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/users/User1@dokter.medchain.id/msp/cacerts/ca-dokter-medchain-id-10054-ca-dokter.pem
+2026/04/22 17:43:57 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/users/User1@dokter.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:43:57 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/users/User1@dokter.medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:43:57][INFO ] User1@dokter.medchain.id enrolled.
+2026/04/22 17:43:58 [INFO] Configuration file location: /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:58 [INFO] TLS Enabled
+2026/04/22 17:43:58 [INFO] TLS Enabled
+Password: adminDokterpw
+2026/04/22 17:43:59 [INFO] Created a default configuration file at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/users/Admin@dokter.medchain.id/fabric-ca-client-config.yaml
+2026/04/22 17:43:59 [INFO] TLS Enabled
+2026/04/22 17:43:59 [INFO] generating key: &{A:ecdsa S:256}
+2026/04/22 17:43:59 [INFO] encoded CSR
+2026/04/22 17:44:00 [INFO] Stored client certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/users/Admin@dokter.medchain.id/msp/signcerts/cert.pem
+2026/04/22 17:44:00 [INFO] Stored root CA certificate at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/users/Admin@dokter.medchain.id/msp/cacerts/ca-dokter-medchain-id-10054-ca-dokter.pem
+2026/04/22 17:44:00 [INFO] Stored Issuer public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/users/Admin@dokter.medchain.id/msp/IssuerPublicKey
+2026/04/22 17:44:01 [INFO] Stored Issuer revocation public key at /home/shulhan/Capstone/organizations/peerOrganizations/dokter.medchain.id/users/Admin@dokter.medchain.id/msp/IssuerRevocationPublicKey
+[2026-04-22 17:44:01][INFO ] Admin@dokter.medchain.id enrolled.
+[2026-04-22 17:44:01][INFO ] Admin OU: admin
+[2026-04-22 17:44:01][INFO ] Semua organisasi berhasil di-enroll.
+[2026-04-22 17:44:01][INFO ] Langkah selanjutnya: bash scripts/setup-channel.sh

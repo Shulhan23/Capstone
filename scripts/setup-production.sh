@@ -95,12 +95,13 @@ docker compose -f "${PROJECT_ROOT}/docker-compose.yaml" up -d \
   "ca.orderer.${DOMAIN}" \
   "ca.klinik.${DOMAIN}" \
   "ca.akademik.${DOMAIN}" \
+  "ca.dokter.${DOMAIN}" \
   2>>"${LOG_FILE}" \
   || error "Gagal start CA containers."
 
 
 # Tunggu setiap container benar-benar Up
-for ca in "ca.orderer.${DOMAIN}" "ca.klinik.${DOMAIN}" "ca.akademik.${DOMAIN}"; do
+for ca in "ca.orderer.${DOMAIN}" "ca.klinik.${DOMAIN}" "ca.akademik.${DOMAIN}" "ca.dokter.${DOMAIN}"; do
   wait_container "${ca}" 60
 done
 
@@ -108,6 +109,7 @@ done
 wait_ca "ca.orderer.${DOMAIN}"  7054 "${ORGANIZATIONS}/fabric-ca/orderer/tls-cert.pem"
 wait_ca "ca.klinik.${DOMAIN}"   8054 "${ORGANIZATIONS}/fabric-ca/klinik/tls-cert.pem"
 wait_ca "ca.akademik.${DOMAIN}" 9054 "${ORGANIZATIONS}/fabric-ca/akademik/tls-cert.pem"
+wait_ca "ca.dokter.${DOMAIN}" 10054 "${ORGANIZATIONS}/fabric-ca/dokter/tls-cert.pem"
 
 step_ok
 
@@ -140,11 +142,13 @@ echo -e "${BOLD}${GREEN}║  Services:                                   ║${NC
 echo -e "${GREEN}║  CA Orderer   : https://ca.orderer.${DOMAIN}:7054  ║${NC}"
 echo -e "${GREEN}║  CA Klinik    : https://ca.klinik.${DOMAIN}:8054   ║${NC}"
 echo -e "${GREEN}║  CA Akademik  : https://ca.akademik.${DOMAIN}:9054 ║${NC}"
+echo -e "${GREEN}║  CA Dokter    : https://ca.dokter.${DOMAIN}:10054  ║${NC}"
 echo -e "${GREEN}║  Orderer 1    : orderer1.${DOMAIN}:7050      ║${NC}"
 echo -e "${GREEN}║  Peer Klinik  : peer0.klinik.${DOMAIN}:7051  ║${NC}"
 echo -e "${GREEN}║  Peer Akademik: peer0.akademik.${DOMAIN}:9051║${NC}"
 echo -e "${GREEN}║  Prometheus   : http://localhost:9090        ║${NC}"
 echo -e "${GREEN}║  Grafana      : http://localhost:3000        ║${NC}"
+echo -e "${GREEN}║  Peer Dokter  : peer0.dokter.${DOMAIN}:10051        ║${NC}"
 echo -e "${BOLD}${GREEN}╠══════════════════════════════════════════════╣${NC}"
 echo -e "${GREEN}║  Langkah selanjutnya:                        ║${NC}"
 echo -e "${GREEN}║    bash scripts/deploy-chaincode.sh          ║${NC}"

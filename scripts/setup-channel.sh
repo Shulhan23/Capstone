@@ -48,6 +48,18 @@ cli_akademik() {
     cli "$@" 2>>"${LOG_FILE}"
 }
 
+# -----------------------------------------------------------------
+# HELPER: Jalankan perintah di CLI sebagai Akademik
+# -----------------------------------------------------------------
+cli_dokter() {
+  docker exec \
+    -e CORE_PEER_LOCALMSPID="DokterMSP" \
+    -e CORE_PEER_ADDRESS="peer0.dokter.${DOMAIN}:10051" \
+    -e CORE_PEER_MSPCONFIGPATH="${CLI_CRYPTO}/peerOrganizations/dokter.${DOMAIN}/users/Admin@dokter.${DOMAIN}/msp" \
+    -e CORE_PEER_TLS_ROOTCERT_FILE="${CLI_CRYPTO}/peerOrganizations/dokter.${DOMAIN}/peers/peer0.dokter.${DOMAIN}/tls/ca.crt" \
+    cli "$@" 2>>"${LOG_FILE}"
+}
+
 # =================================================================
 # STEP 1: Generate genesis block & channel artifacts
 # =================================================================
@@ -59,7 +71,7 @@ gen_artifacts() {
 
   log "  Genesis block..."
   configtxgen \
-    -profile TwoOrgsOrdererGenesis \
+    -profile ThreeOrgsOrdererGenesis \
     -channelID system-channel \
     -outputBlock "${ARTIFACTS}/orderer.genesis.block" \
     >> "${LOG_FILE}" 2>&1 \
@@ -67,16 +79,16 @@ gen_artifacts() {
 
   log "  Channel transaction..."
   configtxgen \
-    -profile TwoOrgsChannel \
+    -profile ThreeOrgsChannel \
     -outputCreateChannelTx "${ARTIFACTS}/${CHANNEL_NAME}.tx" \
     -channelID "${CHANNEL_NAME}" \
     >> "${LOG_FILE}" 2>&1 \
     || error "Gagal generate channel tx."
 
-  for org in "KlinikMSP" "AkademikMSP"; do
+  for org in "KlinikMSP" "AkademikMSP" "DokterMSP"; do
     log "  Anchor peer ${org}..."
     configtxgen \
-      -profile TwoOrgsChannel \
+      -profile ThreeOrgsChannel \
       -outputAnchorPeersUpdate "${ARTIFACTS}/${org}anchors.tx" \
       -channelID "${CHANNEL_NAME}" \
       -asOrg "${org}" \
@@ -92,7 +104,13 @@ gen_artifacts() {
 # =================================================================
 fix_couchdb() {
   step "Step 2/6: Fix CouchDB permissions"
-  mkdir -p "${PROJECT_ROOT}/data/couchdb/"{klinik,akademik}
+  mkdir -p \
+    "${PROJECT_ROOT}/data/couchdb/klinik-peer0" \
+    "${PROJECT_ROOT}/data/couchdb/klinik-peer1" \
+    "${PROJECT_ROOT}/data/couchdb/akademik" \
+    "${PROJECT_ROOT}/data/couchdb/akademik-peer1" \
+    "${PROJECT_ROOT}/data/couchdb/dokter-peer0" \
+    "${PROJECT_ROOT}/data/couchdb/dokter-peer1"
   sudo chown -R 5984:5984 "${PROJECT_ROOT}/data/couchdb/" \
     || warn "chown CouchDB gagal, lanjutkan..."
   step_ok
@@ -105,25 +123,35 @@ start_containers() {
   step "Step 3/6: Start orderer, peer, cli containers"
 
   docker compose -f "${PROJECT_ROOT}/docker-compose.yaml" up -d \
-    "orderer1.${DOMAIN}" "orderer2.${DOMAIN}" "orderer3.${DOMAIN}" \
-    "couchdb.klinik" "couchdb.akademik" \
-    "peer0.klinik.${DOMAIN}" "peer0.akademik.${DOMAIN}" \
-    cli \
+    "orderer1.${DOMAIN}" \
+    "orderer2.${DOMAIN}" \
+    "orderer3.${DOMAIN}" \
+    "couchdb.klinik.peer0" \
+    "couchdb.akademik.peer0" \
+    "couchdb.dokter.peer0" \
+    "peer0.klinik.${DOMAIN}" \
+    "peer0.akademik.${DOMAIN}" \
+    "peer0.dokter.${DOMAIN}" \
+    "cli" \
     >> "${LOG_FILE}" 2>&1 \
     || error "Gagal start containers."
 
   on_rollback "docker compose -f '${PROJECT_ROOT}/docker-compose.yaml' stop \
     orderer1.${DOMAIN} orderer2.${DOMAIN} orderer3.${DOMAIN} \
-    peer0.klinik.${DOMAIN} peer0.akademik.${DOMAIN} cli 2>/dev/null || true"
+    peer0.klinik.${DOMAIN} peer0.akademik.${DOMAIN} peer0.dokter.${DOMAIN} cli 2>/dev/null || true"
 
-  # Tunggu semua container ready
   for c in \
-    "orderer1.${DOMAIN}" "orderer2.${DOMAIN}" "orderer3.${DOMAIN}" \
-    "peer0.klinik.${DOMAIN}" "peer0.akademik.${DOMAIN}" \
+    "orderer1.${DOMAIN}" \
+    "orderer2.${DOMAIN}" \
+    "orderer3.${DOMAIN}" \
+    "peer0.klinik.${DOMAIN}" \
+    "peer0.akademik.${DOMAIN}" \
+    "peer0.dokter.${DOMAIN}" \
     "cli"; do
     wait_container "${c}" 120
   done
-
+  log "  Menunggu service peer benar-benar siap..."
+  sleep 10
   step_ok
 }
 
@@ -164,6 +192,12 @@ join_peers() {
     || error "peer0.akademik gagal join channel."
   log "  peer0.akademik ✓"
 
+  log "  peer0.dokter..."
+  cli_dokter peer channel join \
+    -b "${CLI_ARTIFACTS}/${CHANNEL_NAME}.block" \
+    || error "peer0.dokter gagal join channel."
+  log "  peer0.dokter ✓"
+
   step_ok
 }
 
@@ -190,6 +224,15 @@ update_anchors() {
     --tls --cafile "${ORDERER_CA}" \
     || error "Gagal update anchor peer Akademik."
   log "  AkademikMSP ✓"
+
+  cli_dokter peer channel update \
+    -o "${ORDERER_ADDR}" \
+    --ordererTLSHostnameOverride "orderer1.${DOMAIN}" \
+    -c "${CHANNEL_NAME}" \
+    -f "${CLI_ARTIFACTS}/DokterMSPanchors.tx" \
+    --tls --cafile "${ORDERER_CA}" \
+    || error "Gagal update anchor peer Dokter."
+  log "  DokterMSP ✓"
 
   log "  Verifikasi channel list:"
   cli_klinik peer channel list 2>>"${LOG_FILE}" || true

@@ -1,0 +1,7 @@
+[2026-04-22 17:39:17][INFO ] Memulai setup channel...
+[2026-04-22 17:39:17][INFO ] Log: /home/shulhan/Capstone/logs/setup-channel-20260422_173917.log
+[2026-04-22 17:39:17][INFO ]   Genesis block...
+[34m2026-04-22 17:39:17.949 WIB 0001 INFO[0m [common.tools.configtxgen] [34;1mmain[0m -> Loading configuration
+[35m2026-04-22 17:39:17.960 WIB 0002 PANI[0m [common.tools.configtxgen.localconfig] [35;1mLoad[0m -> Could not find profile: ThreeOrgsOrdererGenesis
+[31m2026-04-22 17:39:17.962 WIB 0003 ERRO[0m [common.tools.configtxgen] [31;1mfunc1[0m -> Could not find profile: ThreeOrgsOrdererGenesis. Please make sure that FABRIC_CFG_PATH or -configPath is set to a path which contains configtx.yaml with the specified profile
+[2026-04-22 17:39:17][ERROR] Gagal generate genesis block.
